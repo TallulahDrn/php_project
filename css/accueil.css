@@ -1,3 +1,7 @@
-ul {
+li {
   list-style-type: none;
+}
+
+.current{/*quand on est sur cette page le bouton est rouge*/
+  background-color: red;
 }
