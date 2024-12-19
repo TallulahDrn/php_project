@@ -1,7 +1,41 @@
+
+/*-----------------------------header------------------------------------*/
 li {
   list-style-type: none;
+  vertical-align: middle;  /*à voir si utile*/
+
 }
 
-.current{/*quand on est sur cette page le bouton est rouge*/
-  background-color: red;
+/* Changer la couleur du bouton au survol */
+.nav-link:hover {
+  color: white !important;
+  background-color: #007bff; /* Exemple : bleu Bootstrap */
+  border-radius: 5px; /* Optionnel pour les coins arrondis */
+  text-decoration: none;
 }
+
+/* Changer la couleur du bouton actif */
+.nav-link.active {
+  color: rgb(0, 0, 0) !important;
+  background-color: #22f534; /* Un bleu plus intense */
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.navbar .nav-link{/*on paramètre les boutons*/
+  color: rgb(0, 0, 0);
+  text-decoration: none;/*on enlève le soulignement par défaut du lien de redirection*/
+  display: block;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;/*coins arrondis*/
+  border-style: solid;/*bordure extérieure*/
+  border-width: 1px;
+  border-color: #22f534;
+  align-items: center;
+  box-sizing: content-box;/*la taille du bouton dépend du contenu*/
+}
+
+/*-------------------------------------------------------------------------------*/
