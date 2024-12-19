@@ -2,14 +2,13 @@
 /*-----------------------------header------------------------------------*/
 li {
     list-style-type: none;
-    vertical-align: middle;  /*à voir si utile*/
   
   }
   
   /* Changer la couleur du bouton au survol */
   .nav-link:hover {
     color: white !important;
-    background-color: #007bff; /* Exemple : bleu Bootstrap */
+    background-color: #22f534; /* Exemple : bleu Bootstrap */
     border-radius: 5px; /* Optionnel pour les coins arrondis */
     text-decoration: none;
   }
@@ -17,7 +16,7 @@ li {
   /* Changer la couleur du bouton actif */
   .nav-link.active {
     color: rgb(0, 0, 0) !important;
-    background-color: #22f534; /* Un bleu plus intense */
+    background-color: #22f534; /* Un vert plus intense */
     border-radius: 5px;
     text-decoration: none;
   }
@@ -34,8 +33,15 @@ li {
     border-style: solid;/*bordure extérieure*/
     border-width: 1px;
     border-color: #22f534;
-    align-items: center;
+    /*align-items: center;*/
     box-sizing: content-box;/*la taille du bouton dépend du contenu*/
+  }
+  
+  
+  .nav-buttons {
+    display: flex !important;
+    justify-content: flex-start !important; /* Aligne les boutons à gauche */
+    gap: 15px; /* Espace entre les boutons */
   }
   
   /*-------------------------------------------------------------------------------*/
