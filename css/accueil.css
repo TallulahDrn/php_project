@@ -47,19 +47,112 @@ li {
 /*-------------------------------------------------------------------------------*/
 
 
-
-#page{/*contenu de la page*/
-  display: flex;/*pour que le corps de page soit responsive*/
+/*
+#page{
+  display: flex;
   flex-direction: column;
 
-  padding-right: 10%;/*marge à droite*/
-  padding-left:10%;/*marge à gauche*/
+  padding-right: 10%;
+  padding-left:10%;
 }
+*/
+
+
+/*
 h1{
-  display: flex;/*pour que le corps de page soit responsive*/
-  justify-content: center; /* Aligne les boutons centre */
-  font-family: 'Roboto';/*police du titre1*/
-  font-size: 38px;/*taille de la police*/
+  display: flex;
+  justify-content: center; 
+  font-family: 'Roboto';
+  font-size: 38px;
   padding-top: 15px;
 
 }
+*/
+
+/*card*/
+
+.card{/*création d'une carte*/
+  background-color: white;/*couleur du fond*/
+  border-radius: 5px;/*on arrondit les coins*/
+  border-style: solid;
+  border-color: #3a9b2d;
+  width: 280px;
+  height: auto;/*en fonction de la hauteur de la ligne de la grille*/
+  display: flex;/*on essaie de la rendre responsive*/
+  flex-direction: column;
+  text-align: center;
+}
+.image{
+  height:150px;
+  width: 150px;
+  border-radius: 50%;/*pour que l'image soit un cercle*/
+}
+.image-box{/*on place l'image dans la carte*/
+  text-align: center;
+  padding-top: 2%;
+}
+.card-text{
+  text-align: center;/*centre le texte de la carte*/
+  color:rgb(133, 133, 133);
+  font-size: 14px;
+}
+hr{/*trait qui ne colle pas les bords de la carte*/
+  margin: 10%;
+}
+
+.card:hover{/*changement de couleur de la carte si on passe dessus*/
+  background-color: #98FB98;
+  color:black;
+}
+.card:hover .image-box{/*l'arrière plan de l'image reste blanc*/
+  background-color: white;
+}
+.card-body{
+  padding-bottom: 15px;
+}
+
+
+
+/* Boutons par défaut */
+
+
+/* Changement de couleur au survol */
+.connexion:hover {
+  background-color: #3a9b2d; /* Couleur de fond au survol */
+  color: white; /* Couleur du texte au survol */
+  border-radius: 5px;
+  padding: 5px 5px;
+}
+/* Changement de couleur au survol */
+.inscription:hover {
+  background-color: #3a9b2d; /* Couleur de fond au survol */
+  color: white; /* Couleur du texte au survol */
+  border-radius: 5px;
+  padding: 5px 5px;
+}
+#page{/*on utilise cette fois le grid pour que la page soit responsive*/
+  display: grid;
+  grid-template-columns: 10% 280px 280px 280px 10%;/*on crée des colonnes pour la grille*/
+  grid-template-rows: 50px  auto 460px;/*on crée des lignes pour la grille*/
+}
+
+/*----------------placement des cartes-----------------*/
+#a{/*place le titre dans la grille*/
+  grid-row-start: 2;/*commence à la deuxième ligne*/
+  grid-row-end: 3;/*finit à la 3e ligne*/
+  grid-column-start: 4;/*commence à la 4e colonne*/
+  grid-column-end: 6;/*finit à la 6e colonne*/
+}
+#b{/*place la première carte dans la grille*/
+  grid-row-start:3;
+  grid-row-end: 4;
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+#c{/*place la deuxième carte dans la grille*/
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 5;
+  grid-column-end: 6;
+}
+/*--------------------------------------------------*/
