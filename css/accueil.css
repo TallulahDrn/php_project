@@ -71,6 +71,10 @@ h1{
 
 /*card*/
 
+h1{
+  text-align: center;
+}
+
 .card{/*création d'une carte*/
   background-color: white;/*couleur du fond*/
   border-radius: 5px;/*on arrondit les coins*/
@@ -132,27 +136,27 @@ hr{/*trait qui ne colle pas les bords de la carte*/
 }
 #page{/*on utilise cette fois le grid pour que la page soit responsive*/
   display: grid;
-  grid-template-columns: 10% 280px 280px 280px 10%;/*on crée des colonnes pour la grille*/
-  grid-template-rows: 50px  auto 460px;/*on crée des lignes pour la grille*/
+  grid-template-columns: 20% auto 5% 15% 5% auto 20%;/*on crée des colonnes pour la grille*/
+  grid-template-rows: 5% 50px 50px  auto 460px;/*on crée des lignes pour la grille*/
 }
 
 /*----------------placement des cartes-----------------*/
 #a{/*place le titre dans la grille*/
   grid-row-start: 2;/*commence à la deuxième ligne*/
   grid-row-end: 3;/*finit à la 3e ligne*/
-  grid-column-start: 4;/*commence à la 4e colonne*/
+  grid-column-start: 3;/*commence à la 4e colonne*/
   grid-column-end: 6;/*finit à la 6e colonne*/
 }
 #b{/*place la première carte dans la grille*/
-  grid-row-start:3;
-  grid-row-end: 4;
-  grid-column-start: 3;
+  grid-row-start:4;
+  grid-row-end: 5;
+  grid-column-start: 2;
   grid-column-end: 4;
 }
 #c{/*place la deuxième carte dans la grille*/
-  grid-row-start: 3;
-  grid-row-end: 4;
-  grid-column-start: 5;
-  grid-column-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  grid-column-start: 6;
+  grid-column-end: 7;
 }
 /*--------------------------------------------------*/
