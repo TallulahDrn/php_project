@@ -1,48 +1,53 @@
 
 /*-----------------------------header------------------------------------*/
 li {
-    list-style-type: none;
-  
-  }
-  
-  /* Changer la couleur du bouton au survol */
-  .nav-link:hover {
-    color: white !important;
-    background-color: #22f534; /* Exemple : bleu Bootstrap */
-    border-radius: 5px; /* Optionnel pour les coins arrondis */
-    text-decoration: none;
-  }
-  
-  /* Changer la couleur du bouton actif */
-  .nav-link.active {
-    color: rgb(0, 0, 0) !important;
-    background-color: #22f534; /* Un vert plus intense */
-    border-radius: 5px;
-    text-decoration: none;
-  }
-  
-  .navbar .nav-link{/*on paramètre les boutons*/
-    color: rgb(0, 0, 0);
-    text-decoration: none;/*on enlève le soulignement par défaut du lien de redirection*/
-    display: block;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 10px;/*coins arrondis*/
-    border-style: solid;/*bordure extérieure*/
-    border-width: 1px;
-    border-color: #22f534;
-    /*align-items: center;*/
-    box-sizing: content-box;/*la taille du bouton dépend du contenu*/
-  }
-  
-  
-  .nav-buttons {
-    display: flex !important;
-    justify-content: flex-start !important; /* Aligne les boutons à gauche */
-    gap: 15px; /* Espace entre les boutons */
-  }
-  
+  list-style-type: none;
+
+}
+
+.navbar {
+  background-color: #98FB98 !important; /* Vert clair pour la navbar */
+}
+
+.navbar-nav {
+  gap: 15px; /* Espace entre les boutons */
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #3a9b2d !important;
+  color: white !important;
+  padding-top: 3px; /* Réduit la hauteur */
+  padding-bottom: 3px; /* Réduit la hauteur */
+  padding-left: 8px; /* Augmente la largeur */
+  padding-right: 8px; /* Augmente la largeur */
+}
+
+.navbar img {
+  border-radius: 50%;
+}
+
+.nav-link.active {
+  color: black !important;
+  background-color: #22f534; /* Un vert plus intense */
+  border-radius: 5px;
+  text-decoration: none;
+  padding-top: 3px; /* Réduit la hauteur */
+  padding-bottom: 3px; /* Réduit la hauteur */
+  padding-left: 12px; /* Augmente la largeur */
+  padding-right: 12px; /* Augmente la largeur */
+}
   /*-------------------------------------------------------------------------------*/
   

@@ -5,69 +5,51 @@ li {
 
 }
 
-/* Changer la couleur du bouton au survol */
-.nav-link:hover {
-  color: white !important;
-  background-color: #22f534; /* Exemple : bleu Bootstrap */
-  border-radius: 5px; /* Optionnel pour les coins arrondis */
-  text-decoration: none;
+.navbar {
+  background-color: #98FB98 !important; /* Vert clair pour la navbar */
 }
 
-/* Changer la couleur du bouton actif */
+.navbar-nav {
+  gap: 15px; /* Espace entre les boutons */
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #3a9b2d !important;
+  color: white !important;
+  padding-top: 3px; /* Réduit la hauteur */
+  padding-bottom: 3px; /* Réduit la hauteur */
+  padding-left: 8px; /* Augmente la largeur */
+  padding-right: 8px; /* Augmente la largeur */
+}
+.navbar img {
+  border-radius: 50%;
+}
+
 .nav-link.active {
   color: rgb(0, 0, 0) !important;
   background-color: #22f534; /* Un vert plus intense */
   border-radius: 5px;
   text-decoration: none;
-}
-
-.navbar .nav-link{/*on paramètre les boutons*/
-  color: rgb(0, 0, 0);
-  text-decoration: none;/*on enlève le soulignement par défaut du lien de redirection*/
-  display: block;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-radius: 10px;/*coins arrondis*/
-  border-style: solid;/*bordure extérieure*/
-  border-width: 1px;
-  border-color: #22f534;
-  /*align-items: center;*/
-  box-sizing: content-box;/*la taille du bouton dépend du contenu*/
-}
-
-
-.nav-buttons {
-  display: flex !important;
-  justify-content: flex-start !important; /* Aligne les boutons à gauche */
-  gap: 15px; /* Espace entre les boutons */
-}
-
+  padding-top: 3px; /* Réduit la hauteur */
+  padding-bottom: 3px; /* Réduit la hauteur */
+  padding-left: 12px; /* Augmente la largeur */
+  padding-right: 12px; /* Augmente la largeur */
+} 
 /*-------------------------------------------------------------------------------*/
 
-
-/*
-#page{
-  display: flex;
-  flex-direction: column;
-
-  padding-right: 10%;
-  padding-left:10%;
-}
-*/
-
-
-/*
-h1{
-  display: flex;
-  justify-content: center; 
-  font-family: 'Roboto';
-  font-size: 38px;
-  padding-top: 15px;
-
-}
-*/
 
 /*card*/
 
@@ -80,11 +62,12 @@ h1{
   border-radius: 5px;/*on arrondit les coins*/
   border-style: solid;
   border-color: #3a9b2d;
-  width: 280px;
+  width: 300px;
   height: auto;/*en fonction de la hauteur de la ligne de la grille*/
   display: flex;/*on essaie de la rendre responsive*/
   flex-direction: column;
   text-align: center;
+  
 }
 .image{
   height:150px;
@@ -118,45 +101,61 @@ hr{/*trait qui ne colle pas les bords de la carte*/
 
 
 /* Boutons par défaut */
+.connexion, .inscription {
+  display: inline-block; /* Assure une taille ajustée au contenu */
+  padding: 3px 5px; /* Marges internes réduites */
+  background-color: transparent; /* Fond par défaut */
+  color: black; /* Couleur par défaut */
+  text-align: center; /* Texte centré */
+  font-size: 14px; /* Taille du texte */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de type "clic" */
+  display: block; /* Les boutons occupent toute la largeur de leur conteneur */
+  margin: 10px auto; /* Ajoute un espace entre les boutons et les centre horizontalement */
+  width: fit-content; /* Ajuste la largeur au contenu */  
+  transition: background-color 0.3s ease, color 0.2s ease; /* Animation fluide */
 
+}
 
 /* Changement de couleur au survol */
 .connexion:hover {
   background-color: #3a9b2d; /* Couleur de fond au survol */
   color: white; /* Couleur du texte au survol */
   border-radius: 5px;
-  padding: 5px 5px;
+  padding: 3px 10px;
+
 }
 /* Changement de couleur au survol */
 .inscription:hover {
   background-color: #3a9b2d; /* Couleur de fond au survol */
   color: white; /* Couleur du texte au survol */
   border-radius: 5px;
-  padding: 5px 5px;
-}
-#page{/*on utilise cette fois le grid pour que la page soit responsive*/
-  display: grid;
-  grid-template-columns: 20% auto 5% 15% 5% auto 20%;/*on crée des colonnes pour la grille*/
-  grid-template-rows: 5% 50px 50px  auto 460px;/*on crée des lignes pour la grille*/
+  padding: 3px 10px;
 }
 
+  #page {
+  display: grid;
+  grid-template-columns: 1fr 300px 80px 300px 1fr; /* Colonnes symétriques */
+  grid-template-rows: 180px auto; /* Ligne pour le texte et une pour les cartes */
+  gap: 30px; /* Espacement entre les éléments */
+}
 /*----------------placement des cartes-----------------*/
-#a{/*place le titre dans la grille*/
-  grid-row-start: 2;/*commence à la deuxième ligne*/
-  grid-row-end: 3;/*finit à la 3e ligne*/
-  grid-column-start: 3;/*commence à la 4e colonne*/
-  grid-column-end: 6;/*finit à la 6e colonne*/
+
+
+#a {
+  grid-column: 2 / 5; /* Centré horizontalement (2e à 4e colonne incluses) */
+  grid-row: 1; /* Placé sur la première ligne */
+  text-align: center; /* Centré horizontalement */
+  margin-top: 50px; /* Ajoute un espace au-dessus du texte */
 }
-#b{/*place la première carte dans la grille*/
-  grid-row-start:4;
-  grid-row-end: 5;
-  grid-column-start: 2;
-  grid-column-end: 4;
+
+#b {
+  grid-column: 2; /* Placé dans la 2e colonne */
+  grid-row: 2; /* Sur la 2e ligne */
 }
-#c{/*place la deuxième carte dans la grille*/
-  grid-row-start: 4;
-  grid-row-end: 5;
-  grid-column-start: 6;
-  grid-column-end: 7;
+
+#c {
+  grid-column: 4; /* Placé dans la 4e colonne */
+  grid-row: 2; /* Sur la 2e ligne */
 }
 /*--------------------------------------------------*/
