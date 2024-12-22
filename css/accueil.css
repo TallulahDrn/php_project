@@ -66,7 +66,7 @@ h1{
   border-radius: 5px;/*on arrondit les coins*/
   border-style: solid;
   border-color: #3a9b2d;
-  width: 300px;
+  width: 315px;
   height: auto;/*en fonction de la hauteur de la ligne de la grille*/
   display: flex;/*on essaie de la rendre responsive*/
   flex-direction: column;
@@ -74,8 +74,8 @@ h1{
   
 }
 .image{
-  height:150px;
-  width: 150px;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;/*pour que l'image soit un cercle*/
 }
 .image-box{/*on place l'image dans la carte*/
