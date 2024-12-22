@@ -24,23 +24,22 @@ li {
   padding: 5px 10px;
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+
 }
 
 .nav-link:hover {
   background-color: #3a9b2d !important;
   color: white !important;
-  padding-top: 3px; /* Réduit la hauteur */
-  padding-bottom: 3px; /* Réduit la hauteur */
-  padding-left: 8px; /* Augmente la largeur */
-  padding-right: 8px; /* Augmente la largeur */
-}
+  box-sizing: border-box; /* S'assurer que la taille totale ne change pas */
 
+}
 .navbar img {
   border-radius: 50%;
 }
 
 .nav-link.active {
-  color: black !important;
+  color: rgb(0, 0, 0) !important;
   background-color: #22f534; /* Un vert plus intense */
   border-radius: 5px;
   text-decoration: none;
@@ -48,6 +47,10 @@ li {
   padding-bottom: 3px; /* Réduit la hauteur */
   padding-left: 12px; /* Augmente la largeur */
   padding-right: 12px; /* Augmente la largeur */
+} 
+
+.navbar .nav-item {
+  margin-right: 10px; /* Pour espacer un peu les items entre eux */
 }
   /*-------------------------------------------------------------------------------*/
   

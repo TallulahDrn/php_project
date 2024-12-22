@@ -13,10 +13,10 @@
         
         
         <nav class="navbar">
-			<div class="container-fluid">
+			<div class="container-fluid d-flex justify-content-between">
 				<a class="navbar-brand">Tibobo</a>
 
-				<ul class="navbar-nav d-flex flex-row align-items-center ms-3"> <!-- Boutons alignés à gauche -->
+				<ul class="navbar-nav d-flex flex-row align-items-center"> <!-- Liens de navigation à gauche -->
 					<li class="nav-item">
 						<a class="nav-link active" href="accueil.html">Accueil</a>
 					</li>
@@ -24,16 +24,19 @@
 						<a class="nav-link" href="recherche.html">Recherche</a>
 					</li>
 				</ul>
-                
-                <!--
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            -->
-                <img src="../images/anonyme.png" heigth="50px" width="50px" class="ms-auto">  <!-- ms-auto force l'image à se placer à droite en poussant tout le reste a gauche-->
-            </div>
-          </nav>
+
+				<!-- Bouton "Aide" et image alignés à droite -->
+				<ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
+					<li class="nav-item">
+						<a class="nav-link" href="aide.html">Aide</a>
+					</li>
+					<li class="nav-item">
+						<img src="../images/anonyme.png" height="50px" width="50px">
+					</li>
+				</ul>
+			</div>
+		</nav>
+
 
           
 
