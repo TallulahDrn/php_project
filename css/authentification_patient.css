@@ -1,0 +1,26 @@
+.light_green{
+    background-color: #C9FFAF;
+}
+.container{
+    padding: 5%;
+}
+.dark_green{
+    background-color: #0DFF00 !important;
+}
+.dark_green:hover{
+    background-color: #0cc402 !important;
+}
+.formulaire{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+@media (max-width: 768px) {
+    .formulaire {
+        margin-left: 0; /* Supprime la marge gauche */
+        margin-right: 0; /* Supprime la marge droite */
+    }
+}
+
+#icone{
+    width: 17%;
+}
