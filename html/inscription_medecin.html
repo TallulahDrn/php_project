@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <link href="../css/inscription.css" rel="stylesheet">
+        <!--<script src="script.js"></script> -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>Inscription Médecin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <nav class="navbar">
+			<div class="container-fluid d-flex justify-content-between">
+				<a class="navbar-brand">Tibobo</a>
+
+				<ul class="navbar-nav d-flex flex-row align-items-center"> <!-- Liens de navigation à gauche -->
+					<li class="nav-item">
+						<a class="nav-link active" href="accueil.html">Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="recherche.html">Recherche</a>
+					</li>
+				</ul>
+
+				<!-- Bouton "Aide" et image alignés à droite -->
+				<ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
+					<li class="nav-item">
+						<a class="nav-link" href="aide.html">Aide</a>
+					</li>
+					<li class="nav-item">
+                        <a href="accueil.html"> <img src="../images/utilisateur.png" style="height:50px;width:50px"></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+        <br>
+        <br>
+        <div class="light_green container">
+            <h1 class="text-center ">Inscrivez-vous</h1>
+            <img id="icone" src="../images/anonyme.png" class="d-block mx-auto">
+            <br>
+            <form class="formulaire">
+                <div class="d-flex gap-3 flex-wrap align-items-start">
+                    <div class="flex-fill" id="gauche">
+                        <label for="nom" class="form-label">Saisissez votre nom : *</label>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required>
+                            <label for="nom">Nom</label>
+                        </div>
+                    </div>
+                    <div class="flex-fill mb-3">
+                        <label for="prenom" class="form-label">Saisissez votre prénom : *</label>
+                        <!-- relie le label au input d'id prenom -->
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" required>
+                            <label for="prenom">Prénom</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="telephone" class="form-label">Saisissez votre numéro de téléphone : *</label>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="telephone" name="telephone" placeholder="**.**.**.**.**" pattern="\d{2}\.\d{2}\.\d{2}\.\d{2}\.\d{2}" required>
+                        <label for="telephone">**.**.**.**.**</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="codepostal" class="form-label">Saisissez votre code postal : *</label>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="codepostal" name="codepostal" placeholder="*****" pattern="\d{5}" required>
+                        <label for="codepostal">*****</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="specialite" class="form-label">Saisissez votre spécialité : *</label>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="specialite" name="specialite" placeholder="Spécialité" required>
+                        <label for="specialite">Spécialité</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="mail1" class="form-label">Saisissez votre adresse mail : *</label>
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="mail1" name="mail1" placeholder="nom@mail.com" required>
+                        <label for="mail1">nom@mail.com</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="mail2" class="form-label">Saisissez votre adresse mail pour confirmation : *</label>
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="mail2" name="mail2" placeholder="nom@mail.com" required>
+                        <label for="mail2">nom@mail.com</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="motdepasse1" class="form-label">Saisissez votre mot de passe : *</label>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="motdepasse1" name="motdepasse1" placeholder="**********"  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$"  required>
+                        <label for="motdepasse1">**********</label>
+                    </div>
+                    <div class="form-text">
+                        Votre mot de passe doit contenir au moins 10 caractères, et doit contenir a minima une lettre majucule, une lettre minuscule et des nombres.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="motdepasse2" class="form-label">Saisissez votre mot de passe pour confirmation : *</label>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="motdepasse2" name="motdepasse2" placeholder="**********"  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$"  required>
+                        <label for="motdepasse2">**********</label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <input class="btn dark_green" type="submit" value="Envoyer">
+                </div>
+            </form>
+        </div>
+        <br>
+        <br>
+        <br>
+    </body>
+</html>
