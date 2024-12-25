@@ -1,0 +1,165 @@
+
+/*-----------------------------header------------------------------------*/
+li {
+  list-style-type: none;
+
+}
+
+.navbar {
+  background-color: #98FB98 !important; /* Vert clair pour la navbar */
+}
+
+.navbar-nav {
+  gap: 15px; /* Espace entre les boutons */
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+
+}
+
+.nav-link:hover {
+  background-color: #3a9b2d !important;
+  color: white !important;
+  box-sizing: border-box; /* S'assurer que la taille totale ne change pas */
+
+}
+.navbar img {
+  border-radius: 50%;
+}
+
+.nav-link.active {
+  color: rgb(0, 0, 0) !important;
+  background-color: #22f534; /* Un vert plus intense */
+  border-radius: 5px;
+  text-decoration: none;
+  padding-top: 3px; /* Réduit la hauteur */
+  padding-bottom: 3px; /* Réduit la hauteur */
+  padding-left: 12px; /* Augmente la largeur */
+  padding-right: 12px; /* Augmente la largeur */
+} 
+
+.navbar .nav-item {
+  margin-right: 10px; /* Pour espacer un peu les items entre eux */
+}
+/*-------------------------------------------------------------------------------*/
+
+
+/*card*/
+
+h1{
+  text-align: center;
+}
+
+.card{/*création d'une carte*/
+  background-color: white;/*couleur du fond*/
+  border-radius: 5px;/*on arrondit les coins*/
+  border-style: solid;
+  border-color: #3a9b2d;
+  width: 315px;
+  height: auto;/*en fonction de la hauteur de la ligne de la grille*/
+  display: flex;/*on essaie de la rendre responsive*/
+  flex-direction: column;
+  text-align: center;
+  
+}
+.image{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;/*pour que l'image soit un cercle*/
+}
+.image-box{/*on place l'image dans la carte*/
+  text-align: center;
+  padding-top: 2%;
+}
+.card-text{
+  text-align: center;/*centre le texte de la carte*/
+  color:rgb(133, 133, 133);
+  font-size: 14px;
+}
+hr{/*trait qui ne colle pas les bords de la carte*/
+  margin: 10%;
+}
+
+.card:hover{/*changement de couleur de la carte si on passe dessus*/
+  background-color: #98FB98;
+  color:black;
+}
+.card:hover .image-box{/*l'arrière plan de l'image reste blanc*/
+  background-color: white;
+}
+.card-body{
+  padding-bottom: 15px;
+}
+
+
+
+/* Boutons par défaut */
+.connexion, .inscription {
+  display: inline-block; /* Assure une taille ajustée au contenu */
+  padding: 3px 5px; /* Marges internes réduites */
+  background-color: transparent; /* Fond par défaut */
+  color: black; /* Couleur par défaut */
+  text-align: center; /* Texte centré */
+  font-size: 14px; /* Taille du texte */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de type "clic" */
+  display: block; /* Les boutons occupent toute la largeur de leur conteneur */
+  margin: 10px auto; /* Ajoute un espace entre les boutons et les centre horizontalement */
+  width: fit-content; /* Ajuste la largeur au contenu */  
+  transition: background-color 0.3s ease, color 0.2s ease; /* Animation fluide */
+
+}
+
+/* Changement de couleur au survol */
+.connexion:hover {
+  background-color: #3a9b2d; /* Couleur de fond au survol */
+  color: white; /* Couleur du texte au survol */
+  border-radius: 5px;
+  padding: 3px 10px;
+
+}
+/* Changement de couleur au survol */
+.inscription:hover {
+  background-color: #3a9b2d; /* Couleur de fond au survol */
+  color: white; /* Couleur du texte au survol */
+  border-radius: 5px;
+  padding: 3px 10px;
+}
+
+  #page {
+  display: grid;
+  grid-template-columns: 1fr 300px 80px 300px 1fr; /* Colonnes symétriques */
+  grid-template-rows: 180px auto; /* Ligne pour le texte et une pour les cartes */
+  gap: 30px; /* Espacement entre les éléments */
+}
+/*----------------placement des cartes-----------------*/
+
+
+#a {
+  grid-column: 2 / 5; /* Centré horizontalement (2e à 4e colonne incluses) */
+  grid-row: 1; /* Placé sur la première ligne */
+  text-align: center; /* Centré horizontalement */
+  margin-top: 50px; /* Ajoute un espace au-dessus du texte */
+}
+
+#b {
+  grid-column: 2; /* Placé dans la 2e colonne */
+  grid-row: 2; /* Sur la 2e ligne */
+}
+
+#c {
+  grid-column: 4; /* Placé dans la 4e colonne */
+  grid-row: 2; /* Sur la 2e ligne */
+}
+/*--------------------------------------------------*/
