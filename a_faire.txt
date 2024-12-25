@@ -1,0 +1,5 @@
+dans les formulaires le required en js parce qu'il ne marche pas avec bootstrap je sais pas pourquoi
+
+navbar pas très responsive sur format telephone
+
+boutons accueil et recherche dans navbar pas le meme format au niveau padding ou margin
