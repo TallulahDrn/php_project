@@ -1,12 +1,90 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link href="style.css" rel="stylesheet">
-        <script src="script.js"></script>
-        <title> index </title>
+        <link href="../css/accueil.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Marko+One&family=Roboto&family=Stint+Ultra+Expanded&display=swap" rel="stylesheet"><!--importation de Roboto et Lalezar-->
+
+        <!--<script src="script.js"></script>-->
+        <title> Accueil </title>
     </head>
     <body>
-        texte
+        
+        
+        <nav class="navbar">
+			<div class="container-fluid d-flex justify-content-between">
+				<a class="navbar-brand">Tibobo</a>
+
+				<ul class="navbar-nav d-flex flex-row align-items-center"> <!-- Liens de navigation à gauche -->
+					<li class="nav-item">
+						<a class="nav-link active" href="accueil.html">Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="recherche.html">Recherche</a>
+					</li>
+				</ul>
+
+				<!-- Bouton "Aide" et image alignés à droite -->
+				<ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
+					<li class="nav-item">
+						<a class="nav-link" href="aide.html">Aide</a>
+					</li>
+					<li class="nav-item">
+                        <a href="accueil.html"> <img src="../images/anonyme.png" style="height:50px;width:50px"></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+
+          
+
+        <div id="page">
+            <h1 id="a">Bienvenue sur Tibobo</h1>
+
+
+            <div class="card" id="b"><!--création d'une carte-->
+                <div class="image-box">
+                    <img src="../images/medecin.webp" class="image">
+                </div>
+                <div class="card-body"><!--le corps (texte) de la carte-->
+                    <h3 class="card-title">Vous êtes médecin ?</h3>
+                    <hr>
+                    <div class="connexion">
+                        <input class="btn" type="button" value="Se connecter">
+                    </div>     
+                    <div class="inscription">
+                        <input class="btn" type="button" value="S'inscrire">
+                    </div>      
+                </div>
+            </div>
+
+            <div class="card" id="c"><!--création d'une carte-->
+                <div class="image-box">
+                    <img src="../images/malade.png"  class="image">
+                </div>
+                <div class="card-body"><!--le corps (texte) de la carte-->
+                    <h3 class="card-title">Vous êtes un patient ?</h3>
+                    <hr>
+                    <div class="connexion">
+                        <input class="btn" type="button" value="Se connecter">
+                    </div>     
+                    <div class="inscription">
+                        <input class="btn" type="button" value="S'inscrire">
+                    </div>      
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
     </body>
 </html>
