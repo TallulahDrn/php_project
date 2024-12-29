@@ -1,16 +1,41 @@
 -- Création des tables pour le modèle conceptuel de données
 
+-- Table : Personne
+CREATE TABLE Personne (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(50),
+    prenom VARCHAR(50),
+    email VARCHAR(50),
+    mot_de_passe VARCHAR(50),
+    medecin BOOLEAN,
+    telephone INT
+);
+
+-- Table : rendez vous
+CREATE TABLE rdv (
+    id SERIAL PRIMARY KEY,
+    heure TIME,
+    duree TIME,
+    date DATE
+);
+
+-- Table : Etablissement
+CREATE TABLE Etablissement (
+    id SERIAL PRIMARY KEY,
+    adresse CHAR(50)
+);
+
 
 -- Table : Medecin
 CREATE TABLE Medecin (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     code_postal INT
 );
 
 -- Table : Specialite
 CREATE TABLE Specialite (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom_specialite CHAR(50)
+    id  SERIAL PRIMARY KEY,
+    nom_specialite VARCHAR(50)
 );
 
 -- Relation : prend (entre Personne et RDV)
@@ -58,28 +83,3 @@ CREATE TABLE possede (
     FOREIGN KEY (specialite_id) REFERENCES Specialite(id)
 );
 
-
--- Table : Personne
-CREATE TABLE Personne (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom CHAR(50),
-    prenom CHAR(50),
-    email CHAR(50),
-    mot_de_passe CHAR(50),
-    medecin BOOLEAN,
-    telephone INT
-);
-
--- Table : rendez vous
-CREATE TABLE Rendez_vous (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    heure TIME,
-    duree TIME,
-    date DATE
-);
-
--- Table : Etablissement
-CREATE TABLE Etablissement (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    adresse CHAR(50)
-);
