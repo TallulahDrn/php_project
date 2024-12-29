@@ -66,7 +66,7 @@ li {
 .dropdown-menu {
     position: absolute !important; /* Positionner le menu en dehors du flux normal */
     top: 100%; /* Placer le menu juste en dessous de l'élément parent */
-    left: 0;
+    right: 0;
     z-index: 1060 !important; /* S'assurer que le menu s'affiche au-dessus des autres éléments */
     display: none; /* Masquer par défaut */
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Ombre pour le menu */
@@ -91,3 +91,72 @@ li {
   /*-------------------------------------------------------------------------------*/
   
 
+/* Nouvelle classe pour le carré vert */
+.bienvenue-box {
+    background-color: #d4edda; /* Vert */
+    color: black; /* Texte en noir */
+    width: 180%; /* Largeur de la boîte */
+    max-width: 1000px; /* Limite la largeur à 600px */
+    height: 80%; /* Laisser la hauteur s'ajuster automatiquement */
+    display: flex;
+    flex-direction: column; /* Alignement des éléments en colonne */
+    justify-content: center; /* Centrer verticalement */
+    align-items: center; /* Centrer horizontalement */
+    border-radius: 15px; /* Coins arrondis */
+    padding: 20px;
+    gap: 20%; /* Espacement entre les éléments dans la boîte */
+}
+
+/* Assurez-vous que le texte h1 est bien centré à l'intérieur */
+h1 {
+    font-size: 1.8em; /* Taille du texte */
+    font-family: 'Roboto', sans-serif; /* Police */
+    margin: 0; /* Retire la marge par défaut autour du h1 */
+}
+
+/* Nouvelle classe pour le container */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center; /* Centrage horizontal */
+    height: calc(100vh - 60px); /* Prendre toute la hauteur de l'écran moins la hauteur de la navbar */
+    margin-top: 20px; /* Décalage du container par rapport à la navbar */
+    text-align: center;
+    gap: 40px;
+}
+
+/* Container pour les boutons, alignés horizontalement */
+.buttons-container {
+    display: flex; /* Aligne les boutons en ligne */
+    gap: 40px; /* Espacement entre les boutons */
+    justify-content: center; /* Centrer les boutons horizontalement */
+    width: 100%; /* Utiliser toute la largeur disponible */
+}
+
+/*-----------------------boutons--------------------------------*/
+/* Boutons par défaut */
+.consulter_rdv, .prendre_rdv {
+    display: inline-block; /* Assure une taille ajustée au contenu */
+    padding: 15px 25px; /* Marges internes réduites */
+    box-sizing: border-box;
+    background-color: #22f534; /* Fond par défaut */
+    color: black; /* Couleur par défaut */
+    text-align: center; /* Texte centré */
+    font-size: 20px; /* Taille du texte */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur de type "clic" */
+    width: auto; /* Laisser les boutons s'ajuster à leur contenu */
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.2s ease; /* Animation fluide */
+    margin: 0 20px; /* Ajouter de la marge à gauche et à droite pour espacer les boutons */
+
+}
+
+.consulter_rdv:hover, .prendre_rdv:hover {
+    background-color: #3a9b2d; /* Couleur de fond au survol */
+    color: white; /* Couleur du texte au survol */
+    border-radius: 5px;
+    padding: 15px 25px; /* Marges internes réduites */
+    box-sizing: border-box;
+}

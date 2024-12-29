@@ -32,7 +32,7 @@
                     $_SESSION['user_email'] = $user['email'];
                     
                     // Rediriger vers l'espace utilisateur
-                    header("Location: espace_utilisateur.php");
+                    header("Location: ../html/espace_utilisateur.html");
                     exit();
                 } else {
                     // Si le mot de passe est incorrect
