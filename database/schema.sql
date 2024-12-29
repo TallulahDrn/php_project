@@ -1,29 +1,5 @@
 -- Création des tables pour le modèle conceptuel de données
 
--- Table : Personne
-CREATE TABLE Personne (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom CHAR(50),
-    prenom CHAR(50),
-    email CHAR(50),
-    mot_de_passe CHAR(50),
-    medecin BOOLEAN,
-    telephone INT
-);
-
--- Table : RDV
-CREATE TABLE RDV (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    heure TIME,
-    duree TIME,
-    date DATE
-);
-
--- Table : Etablissement
-CREATE TABLE Etablissement (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    adresse CHAR(50)
-);
 
 -- Table : Medecin
 CREATE TABLE Medecin (
@@ -80,4 +56,30 @@ CREATE TABLE possede (
     PRIMARY KEY (medecin_id, specialite_id),
     FOREIGN KEY (medecin_id) REFERENCES Medecin(id),
     FOREIGN KEY (specialite_id) REFERENCES Specialite(id)
+);
+
+
+-- Table : Personne
+CREATE TABLE Personne (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom CHAR(50),
+    prenom CHAR(50),
+    email CHAR(50),
+    mot_de_passe CHAR(50),
+    medecin BOOLEAN,
+    telephone INT
+);
+
+-- Table : rendez vous
+CREATE TABLE Rendez_vous (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    heure TIME,
+    duree TIME,
+    date DATE
+);
+
+-- Table : Etablissement
+CREATE TABLE Etablissement (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    adresse CHAR(50)
 );
