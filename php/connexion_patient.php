@@ -32,17 +32,20 @@
                     $_SESSION['user_email'] = $user['email'];
                     
                     // Rediriger vers l'espace utilisateur
-                    header("Location: ../html/espace_utilisateur.html");
+                    header("Location: espace_utilisateur.php");
                     exit();
-                } else {
+                } 
+                else {
                     // Si le mot de passe est incorrect
                     echo "Mot de passe incorrect.";
                 }
-            } else {
+            } 
+            else {
                 // Si l'email n'existe pas dans la base de données
                 echo "Aucun utilisateur trouvé avec cet email.";
             }
-        } else {
+        } 
+        else {
             // Si la requête échoue
             echo "Erreur de requête : " . pg_last_error($conn);
         }
