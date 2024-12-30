@@ -34,13 +34,13 @@
     //$result = pg_query($conn, $sql);
 
 
-    $result = pg_query_params($conn, $sql, [
+    $result = $conn, $sql, [
         $nom, //$1
         $prenom, //$2
         $email, //$3
         $motDePasse, //$4
         $medecin, //$5
-        $telephone]);//$6
+        $telephone];//$6
 
 
     if (!$result) {
@@ -50,6 +50,10 @@
         echo "Insertion réussie.";
     }
     
+    if (strlen($nom) > 50 || strlen($prenom) > 50 || strlen($email) > 255) {
+        die("Les champs 'nom', 'prenom' ou 'email' dépassent la longueur autorisée.");
+    }
+
 
     if ($result) {
         // Rediriger après une inscription réussie

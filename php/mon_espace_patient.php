@@ -32,10 +32,8 @@
     $query_rdv = "
         SELECT rdv.date, rdv.heure, rdv.duree, etablissement.adresse
         FROM rdv
-        INNER JOIN prend ON rdv.id = prend.rdv_id
-        INNER JOIN situe ON rdv.id = situe.rdv_id
-        INNER JOIN etablissement ON situe.etablissement_id = etablissement.id
-        WHERE prend.personne_id = $1
+        INNER JOIN etablissement ON rdv.id_etablissement = etablissement.id
+        WHERE rdv.id_personne = $1
         ORDER BY rdv.date, rdv.heure
     ";
     $result_rdv = pg_query_params($conn, $query_rdv, [$user_id]);
@@ -179,8 +177,8 @@
                     </div>
                     <div class="rdv3">
                         <h2> Vous souhaitez prendre rendez-vous : </h2>
-                        <a href="../html/prendre_rdv_patient.html" class="btn-prendre-rdv">Prendre RDV</a>
-                
+                        <!--<a href="../html/prendre_rdv_patient.html" class="btn-prendre-rdv">Prendre RDV</a>-->
+                        <a href="prendre_rdv_patient.php" class="btn-prendre-rdv">Prendre RDV</a>
                     </div>
                 </div>
             </div>
