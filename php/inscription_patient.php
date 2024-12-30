@@ -10,7 +10,9 @@ try { //connexion à la base de données
 
     $stmt = $conn->prepare("INSERT INTO personne (nom, prenom, email, mot_de_passe, medecin, telephone) VALUES (:nom, :prenom, :email, :motDePasse, :medecin, :telephone)");
     
-
+    $stmt = $conn->prepare("INSERT INTO personne (nom, prenom, email, mot_de_passe, medecin, telephone) VALUES (:nom, :prenom, :email, :motDePasse, :medecin, :telephone)");
+    
+    
     //Vérifier si le formulaire a été envoyé
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,6 +24,10 @@ try { //connexion à la base de données
         // Vérification des emails
         if ($_POST['mail1'] != $_POST['mail2']) {
             die("Les adresses emails ne correspondent pas.");
+        }
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row['count'] > 0) {
+            die("L'email est déjà utilisé. Veuillez en choisir un autre.");
         }
         $email = $_POST['mail1'];
 
