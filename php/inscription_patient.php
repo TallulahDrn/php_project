@@ -1,68 +1,59 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
 
-    // Récupérer les données du formulaire
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $email = $_POST['mail1'];
-    $motDePasse = password_hash($_POST['motdepasse1'], PASSWORD_DEFAULT);
-    $telephone = $_POST['telephone'];
-    $medecin = 'false'; // 0 pour patient, 1 pour médecin
+$dsn = 'pgsql:dbname=projet_doct;host=localhost;port=5432';
+$user = 'postgres';
+$password = 'Isen44';
 
+try { //connexion à la base de données
+    $conn = new PDO($dsn, $user, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
-    // Vérification des emails
-    if ($_POST['mail1'] != $_POST['mail2']) {
-        die("Les adresses emails ne correspondent pas.");
-    }
-
-    // Connexion à la base de données
-    $conn = pg_connect('host=localhost dbname=projet_doct user=postgres password=Isen44');
-    if (!$conn) {
-        die("Erreur de connexion : " . pg_last_error($conn));
-    }
-    else {
-        echo "Connexion réussie.";
-    }
-
-    // Insérer dans la base de données
-    //$sql = "INSERT INTO personne (nom, prenom, email, mot_de_passe, medecin, telephone) 
-            //VALUES ('$nom', '$prenom', '$email', '$motDePasse', $medecin, '$telephone')";
-    $sql = "INSERT INTO personne (nom, prenom, email, mot_de_passe, medecin, telephone) 
-        VALUES ($1, $2, $3, $4, $5, $6)";
-    //$result = pg_query($conn, $sql);
-
-
-    $result = $conn, $sql, [
-        $nom, //$1
-        $prenom, //$2
-        $email, //$3
-        $motDePasse, //$4
-        $medecin, //$5
-        $telephone];//$6
-
-
-    if (!$result) {
-        die("Erreur d'insertion : " . pg_last_error($conn));
-    } 
-    else {
-        echo "Insertion réussie.";
-    }
+    $stmt = $conn->prepare("INSERT INTO personne (nom, prenom, email, mot_de_passe, medecin, telephone) VALUES (:nom, :prenom, :email, :motDePasse, :medecin, :telephone)");
     
-    if (strlen($nom) > 50 || strlen($prenom) > 50 || strlen($email) > 255) {
-        die("Les champs 'nom', 'prenom' ou 'email' dépassent la longueur autorisée.");
-    }
 
+    //Vérifier si le formulaire a été envoyé
 
-    if ($result) {
-        // Rediriger après une inscription réussie
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        // Récupérer les données du formulaire
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        
+        // Vérification des emails
+        if ($_POST['mail1'] != $_POST['mail2']) {
+            die("Les adresses emails ne correspondent pas.");
+        }
+        $email = $_POST['mail1'];
+
+        // Vérification des mots de passe
+        if ($_POST['motdepasse1'] != $_POST['motdepasse2']) {
+            die("Les mots de passe ne correspondent pas.");
+        }
+        $motDePasse = password_hash($_POST['motdepasse1'], PASSWORD_DEFAULT);
+        
+        $telephone = $_POST['telephone'];
+        $medecin = false; // 0 pour patient, 1 pour médecin - par défaut c'est false
+
+        //Liaisons des paramètres
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':motDePasse', $motDePasse);
+        $stmt->bindParam(':medecin', $medecin, PDO::PARAM_BOOL);
+        $stmt->bindParam(':telephone', $telephone);
+
+        //Exécution de la requête d'insertion
+        $stmt->execute();
         header("Location: ../html/connexion_patient.html");
-        exit();
-    } 
-    else {
-        echo "Erreur : " . pg_last_error($conn);
     }
+    else {
+        echo "Veuillez soumettre le formulaire.";
+    }
+} catch (PDOException $e) {
+    die('Connexion échouée : ' . $e->getMessage());
+}
 
-    pg_close($conn); // Fermer la connexion
+//Fermeture de la connexion à la base de données
+$conn = null;
+
 ?>
