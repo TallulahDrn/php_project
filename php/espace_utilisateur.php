@@ -79,10 +79,10 @@
 						<a class="nav-link active" href="espace_utilisateur.php">Accueil</a>
 					</li>
                     <li class="nav-item">
-						<a class="nav-link" href="#">Mon espace</a>
+						<a class="nav-link" href="mon_espace_patient.php">Mon espace</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Mes rendez-vous</a>
+						<a class="nav-link" href="../html/prendre_rdv_patient.html">Prendre rendez-vous</a>
 					</li>
 				</ul>
 
@@ -96,7 +96,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="deconnexion.php">Se déconnecter</a></li>
                             <li><a class="dropdown-item" href="../html/aide_patient.html">Aide</a></li>
-                            <li><a class="dropdown-item" href="mon_compte.php">Mon compte</a></li>
+                            <li><a class="dropdown-item" href="mon_compte_patient.php">Mon compte</a></li>
 
                         </ul>
                         
@@ -110,10 +110,11 @@
     <div class="container">
         <div class="bienvenue-box">
             <h1>Bienvenue, <?php echo $user_firstname . ' ' . $user_lastname; ?> !</h1>
+            <img id="icone" src="../images/malade.png" style="height:250px;width:250px">
         
             <div class="bouttons_container">
-                <a href="#" class="consulter_rdv">Consulter mes rendez-vous</a>
-                <a href="#" class="prendre_rdv">Prendre rendez-vous</a>
+                <a href="mon_espace_patient.php" class="consulter_rdv">Consulter mes rendez-vous</a>
+                <a href="../html/prendre_rdv_patient.html" class="prendre_rdv">Prendre rendez-vous</a>
             </div>
         </div>
 
