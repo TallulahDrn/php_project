@@ -41,21 +41,21 @@
             <h1 class="text-center ">Connectez-vous</h1>
             <img id="icone" src="../images/medecin.png" class="d-block mx-auto">
             <br>
-            <form class="formulaire d-flex flex-column align-items-center">
+            <form class="formulaire d-flex flex-column align-items-center" action="../php/connexion_medecin.php" method="POST">
                     
                     <div class="mb-3 w-100">
                         <label for="mail1" class="form-label">Saisissez votre adresse mail : *</label>
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="mail1" name="mail1" placeholder="nom@mail.com" required>
-                            <label for="mail1">nom@mail.com</label>
+                            <input type="email" class="form-control" id="mail" name="mail" placeholder="nom@mail.com" required>
+                            <label for="mail">nom@mail.com</label>
                         </div>
                     </div>
                     
                     <div class="mb-3 w-100">
-                        <label for="motdepasse1" class="form-label">Saisissez votre mot de passe : *</label>
+                        <label for="motdepasse" class="form-label">Saisissez votre mot de passe : *</label>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="motdepasse1" name="motdepasse1" placeholder="**********"  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$"  required>
-                            <label for="motdepasse1">**********</label>
+                            <input type="password" class="form-control" id="motdepasse" name="motdepasse" placeholder="**********"  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$"  required>
+                            <label for="motdepasse">**********</label>
                         </div>
                         
                         <div class="mdp_oublie">

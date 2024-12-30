@@ -8,7 +8,8 @@
     $email = $_POST['mail1'];
     $motDePasse = password_hash($_POST['motdepasse1'], PASSWORD_DEFAULT);
     $telephone = $_POST['telephone'];
-    $medecin = 'false'; // 0 pour patient, 1 pour médecin
+    $medecin = 'true'; // 0 pour patient, 1 pour médecin
+    $specialite = ['specialite'];
 
 
 
@@ -62,7 +63,7 @@
 
     if ($result) {
         // Rediriger après une inscription réussie
-        header("Location: ../html/connexion_patient.html");
+        header("Location: ../html/connexion_medecin.html");
         exit();
     } 
     else {
@@ -70,14 +71,46 @@
     }
 
 
-    //verifier que l'email n'est aps en double 
+    // Récupérer l'ID de la spécialité
+    $specialite = $_POST['specialite'];
+    $query_specialite = "SELECT id FROM specialite WHERE nom_specialite = $1";
+    $result_specialite = pg_query_params($conn, $query_specialite, [$specialite]);
+
+    if (!$result_specialite) {
+        die("Erreur lors de la récupération de la spécialité : " . pg_last_error($conn));
+    }
+
+    if (pg_num_rows($result_specialite) == 0) {
+        // Si la spécialité n'existe pas, on l'ajoute
+        $query_insert_specialite = "INSERT INTO specialite (nom_specialite) VALUES ($1) RETURNING id";
+        $result_insert_specialite = pg_query_params($conn, $query_insert_specialite, [$specialite]);
+
+        if (!$result_insert_specialite) {
+            die("Erreur lors de l'ajout de la spécialité : " . pg_last_error($conn));
+        }
+
+        $specialite_id = pg_fetch_result($result_insert_specialite, 0, 'id');
+    } else {
+        // Récupérer l'ID de la spécialité existante
+        $specialite_id = pg_fetch_result($result_specialite, 0, 'id');
+    }
+
+    // Ajouter la relation entre le médecin et la spécialité
+    $query_possede = "INSERT INTO possede (id_medecin, id_specialite) VALUES ($1, $2)";
+    $result_possede = pg_query_params($conn, $query_possede, [$medecin_id, $specialite_id]);
+
+    if (!$result_possede) {
+        die("Erreur lors de l'ajout de la relation médecin-spécialité : " . pg_last_error($conn));
+    }
+
+    //verifier que l'email n'est pas en double 
     $query_email = "SELECT * FROM personne WHERE email = $1";
     $result_email = pg_query_params($conn, $query_email, [$email]);
     
     if (pg_num_rows($result_email) > 0) {
         die("Cet email est déjà utilisé.");
     }
-
+    
     
 
     pg_close($conn); // Fermer la connexion
