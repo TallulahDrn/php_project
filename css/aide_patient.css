@@ -1,0 +1,199 @@
+
+/*-----------------------------header------------------------------------*/
+li {
+    list-style-type: none;
+  
+}
+  
+.navbar {
+    background-color: #98FB98 !important; /* Vert clair pour la navbar */
+    position: fixed;
+    width: 100%; /* S'assurer que la navbar prend toute la largeur de la page */
+    top: 0;
+    z-index: 1050 !important; /* S'assurer que la navbar soit au-dessus de tout le reste */
+    padding: 10px 0; /* Un peu d'espace autour des éléments de la navbar */
+}
+  
+.navbar-nav {
+    gap: 15px; /* Espace entre les boutons */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+
+}
+
+.nav-link:hover {
+    background-color: #3a9b2d !important;
+    color: white !important;
+    box-sizing: border-box; /* S'assurer que la taille totale ne change pas */
+
+}
+.navbar img {
+    border-radius: 50%;
+}
+
+.nav-link.active {
+    color: rgb(0, 0, 0) !important;
+    background-color: #22f534; /* Un vert plus intense */
+    border-radius: 5px;
+    text-decoration: none;
+    padding-top: 3px; /* Réduit la hauteur */
+    padding-bottom: 3px; /* Réduit la hauteur */
+    padding-left: 12px; /* Augmente la largeur */
+    padding-right: 12px; /* Augmente la largeur */
+} 
+
+.navbar .nav-item {
+    margin-right: 10px; /* Pour espacer un peu les items entre eux */
+}
+
+
+
+.nav-item.dropdown {
+    position: relative; /* Pour permettre au dropdown de se positionner correctement */
+}
+
+.dropdown-menu {
+    position: absolute !important; /* Positionner le menu en dehors du flux normal */
+    top: 100%; /* Placer le menu juste en dessous de l'élément parent */
+    right: 0;
+    z-index: 1060 !important; /* S'assurer que le menu s'affiche au-dessus des autres éléments */
+    display: none; /* Masquer par défaut */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Ombre pour le menu */
+    background-color: white; /* S'assurer que le fond soit visible */
+    min-width: 200px; /* Largeur minimale pour le menu */
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block; /* Afficher le menu au survol de l'élément */
+}
+
+/* Supprimer la flèche de dropdown */
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* Autres styles de la navbar */
+.navbar-nav {
+    gap: 15px; /* Espace entre les boutons */
+}
+
+/*-------------------------------------------------------------------------------*/
+  
+
+
+    
+
+
+
+:required {
+    border: 2px dotted orange !important;
+}
+
+
+/*-------------------------alignement page-------------------------*/
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Utiliser toute la hauteur de l'écran */
+    text-align: center;
+}
+
+.page {
+    margin-bottom: 30px;
+}
+
+/* Style du fond vert clair avec bords arrondis pour les titres et le formulaire */
+h1, h2, form {
+    background-color: #d4edda;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px auto;
+    width: 90%;
+    max-width: 800px;
+    text-align: center; /* Centrer le texte dans h1 et h2 */
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+    font-family: Roboto;
+}
+
+h1 {
+    font-size: 185% !important;
+    margin-bottom: 15px;
+    margin-top: 3% !important;
+}
+
+h2 {
+    font-size: 100% !important;
+    margin-bottom: 10px;
+}
+
+
+form{
+    margin-top: -30%;
+
+}
+
+/* Formulaire */
+.form-control {
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+/*--------------------------------------------------------------*/
+
+
+.email_container {
+    display: flex; /* Utiliser flexbox pour aligner le label et l'input */
+    align-items: center; /* Alignement vertical au centre */
+    justify-content: flex-start; /* Aligner le contenu à gauche */
+    margin-bottom: 15px; /* Ajouter un espace en dessous */
+    width: 100%; /* S'assurer que la section occupe toute la largeur */
+}
+
+.email_container label {
+    margin-right: 15px; /* Espacement entre le label et l'input */
+    white-space: nowrap; /* Empêcher le label de se couper */
+    font-size: 1rem; /* Taille de texte cohérente */
+}
+
+.email_container input {
+    flex: 1; /* L'input prend tout l'espace disponible restant */
+    min-width: 550px; /* Définir une largeur minimale pour le champ */
+    padding: 10px; /* Ajouter du padding pour le confort de saisie */
+    border-radius: 10px; /* Arrondi des bords */
+    border: 1px solid #ccc; /* Bordure grise */
+    font-size: 1rem; /* Taille de texte cohérente */
+}
+
+.mb-3 label {
+    text-align: left; /* Aligner le texte du label à gauche */
+    margin-bottom: 10px; /* Un peu d'espace sous le label avant la zone de texte */
+    width: 100%; /* Faire en sorte que le label prenne toute la largeur disponible */
+    display: block; /* Assurez-vous que le label occupe une ligne entière */
+}
+
+/* Optionnel : Si vous souhaitez que la zone de texte soit plus large */
+.mb-3 textarea {
+    width: 100%; /* S'assurer que la zone de texte prend toute la largeur */
+    padding: 10px;
+    border-radius: 10px;
+}
