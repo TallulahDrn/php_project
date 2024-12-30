@@ -23,8 +23,8 @@
 
             // Vérifier si l'utilisateur existe
             if ($user) {
-                // Vérifier que l'utilisateur est un patient (medecin = false ou 0)
-                if ($user['medecin'] == 'false' || $user['medecin'] == 0) {
+                // Vérifier que l'utilisateur est un médecin (medecin = true ou 1)
+                if ($user['medecin'] == 'true' || $user['medecin'] == 1) {
                     // Comparer le mot de passe fourni avec le mot de passe stocké dans la base de données
                     if (password_verify($motDePasse, $user['mot_de_passe'])) {
                         // Si les informations sont correctes, connecter l'utilisateur
@@ -34,7 +34,7 @@
                         $_SESSION['user_email'] = $user['email'];
                         
                         // Rediriger vers l'espace utilisateur
-                        header("Location: espace_utilisateur.php");
+                        header("Location: espace_medecin.php");
                         exit();
                     } 
                     else {
@@ -43,12 +43,12 @@
                     }
                 }
                 else{
-                    echo "Vous devez vous connecter via la page Médecin.";
+                    echo " Vous devez vous connecter via la page patient.";
                 }
             } 
             else {
                 // Si l'email n'existe pas dans la base de données
-                echo "Aucun utilisateur trouvé avec cet email.";
+                echo "Aucun medecin trouvé avec cet email.";
             }
         } 
         else {

@@ -7,8 +7,6 @@ $password = 'Isen44';
 try { //connexion à la base de données
     $conn = new PDO($dsn, $user, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $stmt = $conn->prepare("INSERT INTO personne (nom, prenom, email, mot_de_passe, medecin, telephone) VALUES (:nom, :prenom, :email, :motDePasse, :medecin, :telephone)");
     
 
     //Vérifier si le formulaire a été envoyé
@@ -55,5 +53,3 @@ try { //connexion à la base de données
 
 //Fermeture de la connexion à la base de données
 $conn = null;
-
-?>
