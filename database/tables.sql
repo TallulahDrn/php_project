@@ -11,17 +11,6 @@ CREATE TABLE Personne (
     telephone VARCHAR(20) NOT NULL
 );
 
--- Table : rendez vous
-CREATE TABLE Rdv (
-    id SERIAL PRIMARY KEY,
-    heure TIME NOT NULL,
-    duree TIME NOT NULL,
-    date DATE NOT NULL,
-    id_personne INT FOREIGN KEY REFERENCES Personne(id),
-    id_medecin INT NOT NULL FOREIGN KEY REFERENCES Medecin(id),
-    id_etablissement INT NOT NULL FOREIGN KEY REFERENCES Etablissement(id)
-);
-
 -- Table : Etablissement
 CREATE TABLE Etablissement (
     id SERIAL PRIMARY KEY,
@@ -33,13 +22,29 @@ CREATE TABLE Etablissement (
 CREATE TABLE Medecin (
     id SERIAL PRIMARY KEY,
     code_postal INT NOT NULL,
-    id_personne INT NOT NULL FOREIGN KEY REFERENCES Personne(id)
+    id_personne INT NOT NULL,
+    FOREIGN KEY (id_personne) REFERENCES Personne(id)
 );
 
 -- Table : Specialite
 CREATE TABLE Specialite (
     id SERIAL PRIMARY KEY,
     nom_specialite VARCHAR(50) NOT NULL
+);
+
+
+-- Table : rendez vous
+CREATE TABLE Rdv (
+    id SERIAL PRIMARY KEY,
+    heure TIME NOT NULL,
+    duree TIME NOT NULL,
+    date DATE NOT NULL,
+    id_personne INT,
+    id_medecin INT NOT NULL,
+    id_etablissement INT NOT NULL,
+    FOREIGN KEY (id_personne) REFERENCES Personne(id),
+    FOREIGN KEY (id_medecin) REFERENCES Medecin(id),
+    FOREIGN KEY (id_etablissement) REFERENCES Etablissement(id)
 );
 
 
