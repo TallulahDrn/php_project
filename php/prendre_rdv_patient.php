@@ -21,6 +21,7 @@
         $heure = $_POST['heure'];
         $duree = $_POST['duree'];
         $etablissement = $_POST['etablissement'];
+        $medecin_id = $_POST['medecin'];  // Récupérer l'ID du médecin choisi
 
         // Si l'heure est saisie sans minutes ou secondes (par exemple "15" au lieu de "15:00")
         if (strlen($heure) == 2) {
@@ -41,26 +42,15 @@
         // Récupérer l'ID de l'utilisateur connecté
         $user_id = $_SESSION['user_id'];
 
-        // Insérer le rendez-vous dans la table rdv
-        $query_rdv = "INSERT INTO rdv (date, heure, duree) VALUES ($1, $2, $3) RETURNING id";
-        $result_rdv = pg_query_params($conn, $query_rdv, [$date, $heure, $duree]);
+        // Vérification du médecin : Assurer que le médecin existe dans la base de données
+        $query_medecin_check = "SELECT id FROM medecin WHERE id = $1";
+        $result_medecin_check = pg_query_params($conn, $query_medecin_check, [$medecin_id]);
 
-        if (!$result_rdv) {
-            die("Erreur lors de l'ajout du rendez-vous : " . pg_last_error($conn));
+        if (pg_num_rows($result_medecin_check) == 0) {
+            die("Erreur : Le médecin sélectionné n'existe pas.");
         }
 
-        // Récupérer l'ID du rendez-vous inséré
-        $rdv_id = pg_fetch_result($result_rdv, 0, 'id');
-
-        // Associer l'utilisateur au rendez-vous (table "prend")
-        $query_prend = "INSERT INTO prend (personne_id, rdv_id) VALUES ($1, $2)";
-        $result_prend = pg_query_params($conn, $query_prend, [$user_id, $rdv_id]);
-
-        if (!$result_prend) {
-            die("Erreur lors de l'association de l'utilisateur au rendez-vous : " . pg_last_error($conn));
-        }
-
-        // Récupérer l'ID de l'établissement à partir du nom
+        // Récupérer l'ID de l'établissement à partir de son adresse
         $query_etablissement = "SELECT id FROM etablissement WHERE adresse = $1";
         $result_etablissement = pg_query_params($conn, $query_etablissement, [$etablissement]);
 
@@ -81,19 +71,22 @@
             // Récupérer l'ID de l'établissement inséré
             $etablissement_id = pg_fetch_result($result_insert_etablissement, 0, 'id');
         } else {
-            // Si l'établissement existe, récupérer son ID
+            // Si l'établissement existe déjà, récupérer son ID
             $etablissement_id = pg_fetch_result($result_etablissement, 0, 'id');
         }
 
+        // Insérer le rendez-vous dans la table rdv
+        $query_rdv = "INSERT INTO rdv (date, heure, duree, id_personne, id_medecin, id_etablissement) 
+                      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";
+        $result_rdv = pg_query_params($conn, $query_rdv, [$date, $heure, $duree, $user_id, $medecin_id, $etablissement_id]);
 
-        // Associer le rendez-vous à l'établissement
-        $query_situe = "INSERT INTO situe (rdv_id, etablissement_id) VALUES ($1, $2)";
-        $result_situe = pg_query_params($conn, $query_situe, [$rdv_id, $etablissement_id]);
-
-        if (!$result_situe) {
-            die("Erreur lors de l'ajout de l'établissement au rendez-vous : " . pg_last_error($conn));
+        if (!$result_rdv) {
+            die("Erreur lors de l'ajout du rendez-vous : " . pg_last_error($conn));
         }
-        
+
+        // Récupérer l'ID du rendez-vous inséré
+        $rdv_id = pg_fetch_result($result_rdv, 0, 'id');
+
         // Rediriger après avoir ajouté le rendez-vous
         header("Location: ../php/mon_espace_patient.php"); // Page où vous voulez rediriger après l'ajout
         exit();
