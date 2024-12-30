@@ -10,8 +10,6 @@ try { //connexion à la base de données
 
     $stmt = $conn->prepare("INSERT INTO personne (nom, prenom, email, mot_de_passe, medecin, telephone) VALUES (:nom, :prenom, :email, :motDePasse, :medecin, :telephone)");
     
-    $stmt = $conn->prepare("INSERT INTO personne (nom, prenom, email, mot_de_passe, medecin, telephone) VALUES (:nom, :prenom, :email, :motDePasse, :medecin, :telephone)");
-    
     
     //Vérifier si le formulaire a été envoyé
 
