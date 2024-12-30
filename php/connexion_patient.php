@@ -23,21 +23,27 @@
 
             // Vérifier si l'utilisateur existe
             if ($user) {
-                // Comparer le mot de passe fourni avec le mot de passe stocké dans la base de données
-                if (password_verify($motDePasse, $user['mot_de_passe'])) {
-                    // Si les informations sont correctes, connecter l'utilisateur
+                // Vérifier que l'utilisateur est un patient (medecin = false ou 0)
+                if ($user['medecin'] == 'false' || $user['medecin'] == 0) {
+                    // Comparer le mot de passe fourni avec le mot de passe stocké dans la base de données
+                    if (password_verify($motDePasse, $user['mot_de_passe'])) {
+                        // Si les informations sont correctes, connecter l'utilisateur
 
-                    // Démarrer la session
-                    $_SESSION['user_id'] = $user['id']; // Vous pouvez stocker d'autres informations, comme le nom, etc.
-                    $_SESSION['user_email'] = $user['email'];
-                    
-                    // Rediriger vers l'espace utilisateur
-                    header("Location: espace_utilisateur.php");
-                    exit();
-                } 
-                else {
-                    // Si le mot de passe est incorrect
-                    echo "Mot de passe incorrect.";
+                        // Démarrer la session
+                        $_SESSION['user_id'] = $user['id']; // Vous pouvez stocker d'autres informations, comme le nom, etc.
+                        $_SESSION['user_email'] = $user['email'];
+                        
+                        // Rediriger vers l'espace utilisateur
+                        header("Location: espace_utilisateur.php");
+                        exit();
+                    } 
+                    else {
+                        // Si le mot de passe est incorrect
+                        echo "Mot de passe incorrect.";
+                    }
+                }
+                else{
+                    echo "Vous devez vous connecter via la page Médecin.";
                 }
             } 
             else {
