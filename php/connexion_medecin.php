@@ -24,7 +24,11 @@
             // Vérifier si l'utilisateur existe
             if ($user) {
                 // Vérifier que l'utilisateur est un médecin (medecin = true ou 1)
-                if ($user['medecin'] == 'true' || $user['medecin'] == 1) {
+                if ($user['medecin'] != true) {
+                    echo " Vous devez vous connecter via la page patient.";
+ 
+                }
+                else{
                     // Comparer le mot de passe fourni avec le mot de passe stocké dans la base de données
                     if (password_verify($motDePasse, $user['mot_de_passe'])) {
                         // Si les informations sont correctes, connecter l'utilisateur
@@ -41,9 +45,6 @@
                         // Si le mot de passe est incorrect
                         echo "Mot de passe incorrect.";
                     }
-                }
-                else{
-                    echo " Vous devez vous connecter via la page patient.";
                 }
             } 
             else {

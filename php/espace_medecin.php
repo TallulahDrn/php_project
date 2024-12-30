@@ -82,7 +82,10 @@
 						<a class="nav-link" href="#">Mon espace</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Rendez-vous</a>
+						<a class="nav-link" href="#">Planning</a>
+					</li>
+                    <li class="nav-item">
+						<a class="nav-link" href="#">Mes patients</a>
 					</li>
 				</ul>
 
