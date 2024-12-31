@@ -90,3 +90,22 @@ li {
   }
   
   /*-------------------------------------------------------------------------------*/
+
+
+.light_green{
+    background-color: #C9FFAF;
+}
+.container{
+    padding: 2%;
+    margin: 4%;
+}
+form{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.dark_green{
+    background-color: #0DFF00 !important;
+}
+.dark_green:hover{
+    background-color: #0cc402 !important;
+}

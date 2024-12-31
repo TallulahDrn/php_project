@@ -21,17 +21,23 @@
 						<a class="nav-link" href="espace_medecin.php">Accueil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Recherche</a>
+						<a class="nav-link" href="../html/creneaux.html">Mes disponibilités</a>
 					</li>
 				</ul>
 
 				<!-- Bouton "Aide" et image alignés à droite -->
 				<ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
 					
-					<li class="nav-item">
-                        <a href="#"> <img src="../images/medecin.png" style="height:50px;width:50px"></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../php/espace_medecin.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="../images/medecin.png" style="height:50px;width:50px">
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../php/deconnexion.php">Se déconnecter</a></li>
+                            <li><a class="dropdown-item" href="aide_medecin.html">Aide</a></li>
+                            <li><a class="dropdown-item" href="#">Mon compte</a></li>
 
-					</li>
+                        </ul>
 				</ul>
 			</div>
 		</nav>
