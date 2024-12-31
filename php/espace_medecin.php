@@ -82,7 +82,7 @@
 						<a class="nav-link" href="#">Mon espace</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Rendez-vous</a>
+						<a class="nav-link" href="../html/creneaux.html">Rendez-vous</a>
 					</li>
 				</ul>
 

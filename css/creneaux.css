@@ -1,0 +1,92 @@
+/*-----------------------------header------------------------------------*/
+li {
+    list-style-type: none;
+  
+  }
+  
+  .navbar {
+    background-color: #98FB98 !important; /* Vert clair pour la navbar */
+    position: fixed;
+    width: 100%; /* S'assurer que la navbar prend toute la largeur de la page */
+    top: 0;
+    z-index: 1050 !important; /* S'assurer que la navbar soit au-dessus de tout le reste */
+    padding: 10px 0; /* Un peu d'espace autour des éléments de la navbar */
+  }
+  
+  .navbar-nav {
+    gap: 15px; /* Espace entre les boutons */
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .nav-link {
+    color: black;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+  
+  }
+  
+  .nav-link:hover {
+    background-color: #3a9b2d !important;
+    color: white !important;
+    box-sizing: border-box; /* S'assurer que la taille totale ne change pas */
+  
+  }
+  .navbar img {
+    border-radius: 50%;
+  }
+  
+  .nav-link.active {
+    color: rgb(0, 0, 0) !important;
+    background-color: #22f534; /* Un vert plus intense */
+    border-radius: 5px;
+    text-decoration: none;
+    padding-top: 3px; /* Réduit la hauteur */
+    padding-bottom: 3px; /* Réduit la hauteur */
+    padding-left: 12px; /* Augmente la largeur */
+    padding-right: 12px; /* Augmente la largeur */
+  } 
+  
+  .navbar .nav-item {
+    margin-right: 10px; /* Pour espacer un peu les items entre eux */
+  }
+  
+  
+  
+  .nav-item.dropdown {
+    position: relative; /* Pour permettre au dropdown de se positionner correctement */
+  }
+  
+  .dropdown-menu {
+    position: absolute !important; /* Positionner le menu en dehors du flux normal */
+    top: 100%; /* Placer le menu juste en dessous de l'élément parent */
+    right: 0;
+    z-index: 1060 !important; /* S'assurer que le menu s'affiche au-dessus des autres éléments */
+    display: none; /* Masquer par défaut */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Ombre pour le menu */
+    background-color: white; /* S'assurer que le fond soit visible */
+    min-width: 200px; /* Largeur minimale pour le menu */
+    z-index: 15;
+  }
+  
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block; /* Afficher le menu au survol de l'élément */
+  }
+  
+  /* Supprimer la flèche de dropdown */
+  .dropdown-toggle::after {
+    display: none;
+  }
+  
+  /* Autres styles de la navbar */
+  .navbar-nav {
+    gap: 15px; /* Espace entre les boutons */
+  }
+  
+  /*-------------------------------------------------------------------------------*/
