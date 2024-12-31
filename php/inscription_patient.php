@@ -23,11 +23,18 @@ try { //connexion à la base de données
         if ($_POST['mail1'] != $_POST['mail2']) {
             die("Les adresses emails ne correspondent pas.");
         }
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $email = $_POST['mail1'];
+        
+        //On vérifie que l'email n'a pas déjà été utilisé
+        $stmt_email = $conn->prepare("SELECT COUNT(*) FROM personne WHERE email = :email");
+        $stmt_email->bindParam(':email', $email);
+        $stmt_email->execute();
+        $row = $stmt_check_email->fetch(PDO::FETCH_ASSOC);
+
+        // Si l'email est déjà utilisé
         if ($row['count'] > 0) {
             die("L'email est déjà utilisé. Veuillez en choisir un autre.");
         }
-        $email = $_POST['mail1'];
 
         // Vérification des mots de passe
         if ($_POST['motdepasse1'] != $_POST['motdepasse2']) {
