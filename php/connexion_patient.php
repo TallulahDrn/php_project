@@ -23,8 +23,8 @@
 
             // Vérifier si l'utilisateur existe
             if ($user) {
-                // Vérifier que l'utilisateur est un patient (medecin = false ou 0)
-                if ($user['medecin'] == 'false' || $user['medecin'] == 0) {
+                // Vérifier que l'utilisateur est un patient (medecin = 'f' en postgresql)
+                if ($user['medecin']=='f') {
                     // Comparer le mot de passe fourni avec le mot de passe stocké dans la base de données
                     if (password_verify($motDePasse, $user['mot_de_passe'])) {
                         // Si les informations sont correctes, connecter l'utilisateur
