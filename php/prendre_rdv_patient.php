@@ -1,97 +1,134 @@
 <?php
-    // Démarrer la session
-    session_start();
+    // Si la méthode de la requête est POST et qu'il y a une requête
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['query'])) {
+        $dsn = 'pgsql:dbname=projet_doct;host=localhost;port=5432';
+        $user = 'postgres';
+        $password = 'Isen44';
 
-    // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: ../php/connexion.php");
-        exit();
+        try {
+            $pdo = new PDO($dsn, $user, $password);
+            $query = trim($_POST['query']);
+
+            // Échapper les caractères spéciaux pour éviter des erreurs de syntaxe
+            $query = "%" . $query . "%";  // Ajouter les jokers % pour la recherche LIKE/ILIKE
+
+            // Requête SQL pour récupérer les médecins et leurs établissements sans horaires de RDV
+            $sql = "
+            SELECT 
+                Medecin.id AS medecin_id,
+                Personne.nom,
+                Personne.prenom,
+                Specialite.nom_specialite AS specialite,
+                Etablissement.adresse AS etablissement
+            FROM 
+                Medecin
+            JOIN Personne ON Medecin.id_personne = Personne.id
+            JOIN possede ON Medecin.id = possede.id_medecin
+            JOIN Specialite ON possede.id_specialite = Specialite.id
+            JOIN Rdv ON Medecin.id = Rdv.id_medecin
+            JOIN Etablissement ON Rdv.id_etablissement = Etablissement.id
+            WHERE 
+                (Personne.nom ILIKE :query 
+                OR Specialite.nom_specialite ILIKE :query 
+                OR Etablissement.adresse ILIKE :query)
+            GROUP BY 
+                Medecin.id, Personne.nom, Personne.prenom, Specialite.nom_specialite, Etablissement.adresse
+            ORDER BY 
+                Personne.nom, Personne.prenom, Etablissement.adresse;
+            ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':query', $query, PDO::PARAM_STR); // Liens sécurisés avec les paramètres
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Afficher les résultats si la requête a retourné des résultats
+            $show_results = !empty($results); // Vérifie s'il y a des résultats à afficher
+        } catch (PDOException $e) {
+            echo '<p>Erreur de connexion : ' . htmlspecialchars($e->getMessage()) . '</p>';
+        }
     }
-
-    // Connexion à la base de données
-    $conn = pg_connect("host=localhost dbname=projet_doct user=postgres password=Isen44");
-    if (!$conn) {
-        die("Erreur de connexion à la base de données : ". pg_last_error());
-    }
-
-    // Vérifier si le formulaire est soumis
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Récupérer les données du formulaire
-        $date = $_POST['date'];
-        $heure = $_POST['heure'];
-        $duree = $_POST['duree'];
-        $etablissement = $_POST['etablissement'];
-        $medecin_id = $_POST['medecin'];  // Récupérer l'ID du médecin choisi
-
-        // Si l'heure est saisie sans minutes ou secondes (par exemple "15" au lieu de "15:00")
-        if (strlen($heure) == 2) {
-            $heure = $heure . ":00:00";  // Ajoute les minutes et secondes à l'heure
-        } elseif (strlen($heure) == 5) {
-            $heure = $heure . ":00";  // Ajoute les secondes si seulement les minutes sont présentes (par exemple "15:30" -> "15:30:00")
-        }
-
-        // Si la durée est saisie sans minutes ou secondes (par exemple "2" au lieu de "02:00:00")
-        if (strlen($duree) == 1) {
-            $duree = "00:$duree:00";  // Ajoute des heures et minutes (par exemple "2" -> "00:02:00")
-        } elseif (strlen($duree) == 2) {
-            $duree = "00:$duree:00";  // Ajoute des heures et secondes (par exemple "02" -> "00:02:00")
-        } elseif (strlen($duree) == 5) {
-            $duree = $duree . ":00";  // Complète la durée (par exemple "02:00" -> "02:00:00")
-        }
-
-        // Récupérer l'ID de l'utilisateur connecté
-        $user_id = $_SESSION['user_id'];
-
-        // Vérification du médecin : Assurer que le médecin existe dans la base de données
-        $query_medecin_check = "SELECT id FROM medecin WHERE id = $1";
-        $result_medecin_check = pg_query_params($conn, $query_medecin_check, [$medecin_id]);
-
-        if (pg_num_rows($result_medecin_check) == 0) {
-            die("Erreur : Le médecin sélectionné n'existe pas.");
-        }
-
-        // Récupérer l'ID de l'établissement à partir de son adresse
-        $query_etablissement = "SELECT id FROM etablissement WHERE adresse = $1";
-        $result_etablissement = pg_query_params($conn, $query_etablissement, [$etablissement]);
-
-        if (!$result_etablissement) {
-            die("Erreur lors de la récupération de l'établissement : " . pg_last_error($conn));
-        }
-
-        // Si l'établissement n'existe pas, on l'ajoute
-        if (pg_num_rows($result_etablissement) == 0) {
-            // Ajouter l'établissement dans la base de données
-            $query_insert_etablissement = "INSERT INTO etablissement (adresse) VALUES ($1) RETURNING id";
-            $result_insert_etablissement = pg_query_params($conn, $query_insert_etablissement, [$etablissement]);
-
-            if (!$result_insert_etablissement) {
-                die("Erreur lors de l'ajout de l'établissement : " . pg_last_error($conn));
-            }
-
-            // Récupérer l'ID de l'établissement inséré
-            $etablissement_id = pg_fetch_result($result_insert_etablissement, 0, 'id');
-        } else {
-            // Si l'établissement existe déjà, récupérer son ID
-            $etablissement_id = pg_fetch_result($result_etablissement, 0, 'id');
-        }
-
-        // Insérer le rendez-vous dans la table rdv
-        $query_rdv = "INSERT INTO rdv (date, heure, duree, id_personne, id_medecin, id_etablissement) 
-                      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";
-        $result_rdv = pg_query_params($conn, $query_rdv, [$date, $heure, $duree, $user_id, $medecin_id, $etablissement_id]);
-
-        if (!$result_rdv) {
-            die("Erreur lors de l'ajout du rendez-vous : " . pg_last_error($conn));
-        }
-
-        // Récupérer l'ID du rendez-vous inséré
-        $rdv_id = pg_fetch_result($result_rdv, 0, 'id');
-
-        // Rediriger après avoir ajouté le rendez-vous
-        header("Location: ../php/mon_espace_patient.php"); // Page où vous voulez rediriger après l'ajout
-        exit();
-    }
-
-    // Fermer la connexion à la base de données
-    pg_close($conn);
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <link href="../css/prendre_rdv_patient.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Marko+One&family=Roboto&family=Stint+Ultra+Expanded&display=swap" rel="stylesheet">
+
+        <title> Prendre rendez-vous </title>
+    </head>
+    <body>
+        
+        <nav class="navbar">
+            <div class="container-fluid d-flex justify-content-between">
+                <a class="navbar-brand">Tibobo</a>
+                <ul class="navbar-nav d-flex flex-row align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../php/espace_utilisateur.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../php/mon_espace_patient.php">Mon espace</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="prendre_rdv_patient.php">Prendre rendez-vous</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav d-flex flex-row align-items-center ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../php/espace_utilisateur.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="../images/malade.png" style="height:50px;width:50px">
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../php/deconnexion.php">Se déconnecter</a></li>
+                            <li><a class="dropdown-item" href="aide_patient.html">Aide</a></li>
+                            <li><a class="dropdown-item" href="../php/mon_compte_patient.php">Mon compte</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container mt-5">
+            <h1>Prendre un rendez-vous</h1>
+
+            <!-- Formulaire de recherche -->
+            <form method="POST" action="">
+                <div class="mb-3">
+                    <label for="search-input" class="form-label">Rechercher un médecin, une spécialité ou un établissement :</label>
+                    <input type="text" id="search-input" name="query" class="form-control" placeholder="Tapez ici..." required>
+                </div>
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </form>
+
+            <!-- Tableau des résultats -->
+            <?php if (isset($show_results) && $show_results): ?>
+                <div class="table-responsive mt-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nom du Médecin</th>
+                                <th>Spécialité</th>
+                                <th>Établissement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($results as $row): ?>
+                                <tr>
+                                    <td>DR. <?= htmlspecialchars($row['nom']) ?> <?= htmlspecialchars($row['prenom']) ?></td>
+                                    <td><?= htmlspecialchars($row['specialite']) ?></td>
+                                    <td><?= htmlspecialchars($row['etablissement']) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php elseif (isset($show_results) && !$show_results): ?>
+                <p>Aucun résultat trouvé.</p>
+            <?php endif; ?>
+        </div>
+
+    </body>
+</html>
