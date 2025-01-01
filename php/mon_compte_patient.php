@@ -58,7 +58,7 @@
 						<a class="nav-link" href="#">Mon espace</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Prendre rendez-vous</a>
+						<a class="nav-link" href="prendre_rdv_patient.php">Prendre rendez-vous</a>
 					</li>
 				</ul>
 
