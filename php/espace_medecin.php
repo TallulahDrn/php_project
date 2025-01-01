@@ -54,8 +54,6 @@
     pg_free_result($result); //permet de libérer les résultats pour optimiser la mémoire
     pg_close($conn);
 
-
-// Vous pouvez aussi récupérer d'autres informations depuis la base de données si nécessaire
 ?>
 
 <!DOCTYPE html>
@@ -82,12 +80,16 @@
                     <a class="nav-link" href="#">Mon espace</a>
                 </li>
                 <li class="nav-item">
+						<a class="nav-link" href="../html/creneaux.html">Mes disponibilités</a>
+				</li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">Planning</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Mes patients</a>
                 </li>
             </ul>
+
 
             <!-- Bouton "Aide" et image alignés à droite -->
             <ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 

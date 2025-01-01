@@ -23,12 +23,9 @@
 
             // Vérifier si l'utilisateur existe
             if ($user) {
-                // Vérifier que l'utilisateur est un médecin (medecin = true ou 1)
-                if ($user['medecin'] != true) {
-                    echo " Vous devez vous connecter via la page patient.";
- 
-                }
-                else{
+
+                // Vérifier que l'utilisateur est un médecin (medecin = 't' pour postgresql)
+                if ($user['medecin'] == 't') {
                     // Comparer le mot de passe fourni avec le mot de passe stocké dans la base de données
                     if (password_verify($motDePasse, $user['mot_de_passe'])) {
                         // Si les informations sont correctes, connecter l'utilisateur

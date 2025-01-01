@@ -29,7 +29,7 @@ try { //connexion à la base de données
         $stmt_email = $conn->prepare("SELECT COUNT(*) FROM personne WHERE email = :email");
         $stmt_email->bindParam(':email', $email);
         $stmt_email->execute();
-        $row = $stmt_check_email->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt_email->fetch(PDO::FETCH_ASSOC);
 
         // Si l'email est déjà utilisé
         if ($row['count'] > 0) {

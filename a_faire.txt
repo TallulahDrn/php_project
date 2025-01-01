@@ -5,3 +5,10 @@ navbar pas très responsive sur format telephone
 boutons accueil et recherche dans navbar pas le meme format au niveau padding ou margin
 
 page accueil : en format téléphone que les cartes aillent l'une sous l'autre
+
+page inscription patient : pour les messages die plutot faire des pop-up pour rester sur la meme page ->modifier die pour pop up
+
+page inscription médecin pour la spécialité faire un menu déroulant avec la possibilité de rajouter une autre spécialité 
+et pouvoir mettre plusieurs spécialité pour le meme médecin
+
+pour tout php préférer les pop up aux die, c'est plus joli
