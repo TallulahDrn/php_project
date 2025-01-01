@@ -70,45 +70,45 @@
     <title>Espace Utilisateur</title>
 </head>
 <body>
-<nav class="navbar">
-			<div class="container-fluid d-flex justify-content-between">
-				<a class="navbar-brand">Tibobo</a>
+    <nav class="navbar">
+        <div class="container-fluid d-flex justify-content-between">
+            <a class="navbar-brand">Tibobo</a>
 
-				<ul class="navbar-nav d-flex flex-row align-items-center"> <!-- Liens de navigation à gauche -->
-                    <li class="nav-item">
-						<a class="nav-link active" href="espace_utilisateur.php">Accueil</a>
-					</li>
-                    <li class="nav-item">
-						<a class="nav-link" href="#">Mon espace</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Planning</a>
-					</li>
-                    <li class="nav-item">
-						<a class="nav-link" href="#">Mes patients</a>
-					</li>
-				</ul>
+            <ul class="navbar-nav d-flex flex-row align-items-center"> <!-- Liens de navigation à gauche -->
+                <li class="nav-item">
+                    <a class="nav-link active" href="espace_medecin.php">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mon espace</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Planning</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mes patients</a>
+                </li>
+            </ul>
 
-				<!-- Bouton "Aide" et image alignés à droite -->
-				<ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
+            <!-- Bouton "Aide" et image alignés à droite -->
+            <ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../images/medecin.png" style="height:50px;width:50px">
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="deconnexion.php">Se déconnecter</a></li>
-                            <li><a class="dropdown-item" href="../html/aide_medecin.html">Aide</a></li>
-                            <li><a class="dropdown-item" href="#">Mon compte</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../images/medecin.png" style="height:50px;width:50px">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="deconnexion.php">Se déconnecter</a></li>
+                        <li><a class="dropdown-item" href="../html/aide_medecin.html">Aide</a></li>
+                        <li><a class="dropdown-item" href="#">Mon compte</a></li>
 
-                        </ul>
-                        
-                    </li>
+                    </ul>
+                    
+                </li>
 
 
-				</ul>
-			</div>
-		</nav>
+            </ul>
+        </div>
+    </nav>
     
     <div class="container">
         <div class="bienvenue-box">
