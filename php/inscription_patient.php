@@ -7,8 +7,10 @@ $password = 'Isen44';
 try { //connexion à la base de données
     $conn = new PDO($dsn, $user, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
 
+    $stmt = $conn->prepare("INSERT INTO personne (nom, prenom, email, mot_de_passe, medecin, telephone) VALUES (:nom, :prenom, :email, :motDePasse, :medecin, :telephone)");
+    
+    
     //Vérifier si le formulaire a été envoyé
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,6 +24,17 @@ try { //connexion à la base de données
             die("Les adresses emails ne correspondent pas.");
         }
         $email = $_POST['mail1'];
+        
+        //On vérifie que l'email n'a pas déjà été utilisé
+        $stmt_email = $conn->prepare("SELECT COUNT(*) FROM personne WHERE email = :email");
+        $stmt_email->bindParam(':email', $email);
+        $stmt_email->execute();
+        $row = $stmt_check_email->fetch(PDO::FETCH_ASSOC);
+
+        // Si l'email est déjà utilisé
+        if ($row['count'] > 0) {
+            die("L'email est déjà utilisé. Veuillez en choisir un autre.");
+        }
 
         // Vérification des mots de passe
         if ($_POST['motdepasse1'] != $_POST['motdepasse2']) {
@@ -53,3 +66,5 @@ try { //connexion à la base de données
 
 //Fermeture de la connexion à la base de données
 $conn = null;
+
+?>
