@@ -111,3 +111,8 @@ li {
     background-color: #138496 !important; /* Vert-bleu foncé au survol */
 }
 
+/* Modification du bandeau de détails */
+.card .card-header {
+    background-color: #3a9b2d !important; /* Vert pour les bandeaux */
+    color: white; /* Texte en blanc */
+}

@@ -89,77 +89,14 @@ li {
 }
 
 /*-------------------------------------------------------------------------------*/
- 
-
-.row .col-md-1 {    /* le selecteur > permet de cibler uniquement les enfants directs */
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    padding: 15px; /* Ajout d'espacement interne pour agrandir la case */
-    flex: 1; /* Permet de s'adapter uniformément dans la grille */
-    text-align: center; /* Centrer le texte horizontalement */
-    min-height: 150px; /* Définir une hauteur minimale pour toutes les cases */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajouter une ombre légère pour une meilleure esthétique */
-    transition: transform 0.2s ease; /* Animation au survol */
+.btn {
+    background-color: #28a745 !important; /* Vert clair */
+    color: white !important; /* Texte en blanc */
+    border: none !important; /* Enlever la bordure */
+}
+.btn:hover {
+    background-color: #218838 !important; /* Vert foncé au survol */
+    color: white !important; /* Texte en blanc lors du survol */
 }
 
-.row  .col-md-1:hover {
-    transform: scale(1.05); /* Agrandir légèrement au survol pour un effet visuel agréable */
-}
-
-.row  .col-md-1 h4 {
-    margin-bottom: 15px;
-    font-weight: bold;
-    font-size: 18px; /* Taille de police légèrement plus grande */
-}
-
-.row  .col-md-1 ul {
-    padding: 0;
-    margin: 0;
-    list-style: none; /* Supprimer les puces de la liste */
-}
-
-.container {
-    overflow-x: auto; /* Ajouter un défilement horizontal si le contenu dépasse la largeur de l'écran */
-    padding: 20px; /* Espacement autour du planning pour respirer */
-}
-
-.row {
-    gap: 30px; /* Réduire l'espacement global entre les cases */
-    display: flex; /* Activer la flexbox pour que toutes les colonnes soient sur une seule ligne */
-    flex-wrap: nowrap; /* Empêcher le retour à la ligne */
-}
-
-.row .col-md-1 ul li {
-    margin-bottom: 50px; /* Espace entre les créneaux */
-}
-
-
-
-/* Pour s'assurer que les cases s'ajustent bien à leur contenu */
-.row .col-md-1 {
-    display: flex;
-    flex-direction: column; /* Permet d'empiler les éléments verticalement */
-    justify-content: space-between; /* Répartit l'espace uniformément */
-    align-items: center; /* Centrer le contenu horizontalement */
-}
-
-
-
-
-/* Cibler spécifiquement les boutons dans la section planning */
-.container .btn-primary {
-    background-color: #28a745 !important;  /* Vert clair */
-    color: white !important;  /* Texte noir */
-    border: 1px solid !important;  /* Bordure verte */
-}
-
-.container .btn-primary:hover {
-    background-color: #218838 !important;  /* Vert foncé au survol */
-    color: white !important;  /* Texte blanc */
-}
-
-.list-unstyled a{
-    text-decoration: none !important;
-    color: #218838 !important;
-}
 
