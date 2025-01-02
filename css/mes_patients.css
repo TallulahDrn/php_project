@@ -89,3 +89,25 @@ li {
 }
 
   /*-------------------------------------------------------------------------------*/
+
+  /* Style personnalisé pour les boutons */
+.btn {
+    background-color: #28a745 !important; /* Vert clair */
+    color: white !important; /* Texte en blanc */
+    border: none !important; /* Enlever la bordure */
+}
+
+.btn:hover {
+    background-color: #218838 !important; /* Vert foncé au survol */
+    color: white !important; /* Texte en blanc lors du survol */
+}
+
+.btn-info {
+    background-color: #17a2b8 !important; /* Vert-bleu pour le bouton d'information */
+    border-color: #17a2b8 !important;
+}
+
+.btn-info:hover {
+    background-color: #138496 !important; /* Vert-bleu foncé au survol */
+}
+

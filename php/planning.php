@@ -53,6 +53,25 @@
         $planning[$day][] = $rdv;
     }
 
+
+    // Organiser les rendez-vous par jour de la semaine en français
+    $jours_francais = [
+        'Monday' => 'Lundi',
+        'Tuesday' => 'Mardi',
+        'Wednesday' => 'Mercredi',
+        'Thursday' => 'Jeudi',
+        'Friday' => 'Vendredi',
+        'Saturday' => 'Samedi',
+        'Sunday' => 'Dimanche'
+    ];
+
+    // Organiser les rendez-vous en utilisant les jours en français
+    $planning_francais = [];
+    foreach ($planning as $day => $rdvs) {
+        $day_fr = $jours_francais[$day]; // Convertir l'anglais en français
+        $planning_francais[$day_fr] = $rdvs;
+    }
+
     // Fermer la connexion
     pg_close($conn);
 ?>
@@ -89,7 +108,7 @@
                 </ul>
                 <ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> <!-- Bouton "Aide" et image alignés à droite -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="espace_medecin.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="../images/medecin.png" style="height:50px;width:50px">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -113,12 +132,13 @@
             </div>
 
             <div class="row">
-                <?php foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day): ?>
+                <?php foreach (['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'] as $day): ?>
+
                     <div class="col-md-1 text-center border p-3">
                         <h4><?php echo $day; ?></h4>
-                        <?php if (isset($planning[$day]) && count($planning[$day]) > 0): ?>
+                        <?php if (isset($planning_francais[$day]) && count($planning_francais[$day]) > 0): ?>
                             <ul class="list-unstyled">
-                                <?php foreach ($planning[$day] as $rdv): ?>
+                                <?php foreach ($planning_francais[$day] as $rdv): ?>
                                     <li>
                                         <a href="mes_patients.php?rdv_id=<?php echo $rdv['id']; ?>">
                                             <strong><?php echo $rdv['heure']; ?></strong> - <?php echo $rdv['duree']; ?> min<br>

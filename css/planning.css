@@ -91,7 +91,7 @@ li {
 /*-------------------------------------------------------------------------------*/
  
 
-.row > .col-md-1 {    /* le selecteur > permet de cibler uniquement les enfants directs */
+.row .col-md-1 {    /* le selecteur > permet de cibler uniquement les enfants directs */
     background-color: #f8f9fa;
     border-radius: 5px;
     padding: 15px; /* Ajout d'espacement interne pour agrandir la case */
@@ -102,20 +102,25 @@ li {
     transition: transform 0.2s ease; /* Animation au survol */
 }
 
-.row > .col-md-1:hover {
+.row  .col-md-1:hover {
     transform: scale(1.05); /* Agrandir légèrement au survol pour un effet visuel agréable */
 }
 
-.row > .col-md-1 h4 {
+.row  .col-md-1 h4 {
     margin-bottom: 15px;
     font-weight: bold;
     font-size: 18px; /* Taille de police légèrement plus grande */
 }
 
-.row > .col-md-1 ul {
+.row  .col-md-1 ul {
     padding: 0;
     margin: 0;
     list-style: none; /* Supprimer les puces de la liste */
+}
+
+.container {
+    overflow-x: auto; /* Ajouter un défilement horizontal si le contenu dépasse la largeur de l'écran */
+    padding: 20px; /* Espacement autour du planning pour respirer */
 }
 
 .row {
@@ -124,15 +129,27 @@ li {
     flex-wrap: nowrap; /* Empêcher le retour à la ligne */
 }
 
-.container {
-    overflow-x: auto; /* Ajouter un défilement horizontal si le contenu dépasse la largeur de l'écran */
-    padding: 20px; /* Espacement autour du planning pour respirer */
-}
+
 
 /* Pour s'assurer que les cases s'ajustent bien à leur contenu */
-.row > .col-md-1 {
+.row .col-md-1 {
     display: flex;
     flex-direction: column; /* Permet d'empiler les éléments verticalement */
     justify-content: space-between; /* Répartit l'espace uniformément */
     align-items: center; /* Centrer le contenu horizontalement */
+}
+
+
+
+
+/* Cibler spécifiquement les boutons dans la section planning */
+.container .btn-primary {
+    background-color: #28a745 !important;  /* Vert clair */
+    color: white !important;  /* Texte noir */
+    border: 1px solid !important;  /* Bordure verte */
+}
+
+.container .btn-primary:hover {
+    background-color: #218838 !important;  /* Vert foncé au survol */
+    color: white !important;  /* Texte blanc */
 }
