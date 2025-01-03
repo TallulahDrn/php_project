@@ -41,6 +41,36 @@ li {
 .navbar .nav-item {
     margin-right: 10px; /* Pour espacer un peu les items entre eux */
 }
+
+.nav-item.dropdown {
+    position: relative; /* Pour permettre au dropdown de se positionner correctement */
+}
+
+.dropdown-menu {
+    position: absolute !important; /* Positionner le menu en dehors du flux normal */
+    top: 100%; /* Placer le menu juste en dessous de l'élément parent */
+    right: 0;
+    z-index: 1060 !important; /* S'assurer que le menu s'affiche au-dessus des autres éléments */
+    display: none; /* Masquer par défaut */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Ombre pour le menu */
+    background-color: white; /* S'assurer que le fond soit visible */
+    min-width: 200px; /* Largeur minimale pour le menu */
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block; /* Afficher le menu au survol de l'élément */
+}
+
+/* Supprimer la flèche de dropdown */
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* Autres styles de la navbar */
+.navbar-nav {
+    gap: 15px; /* Espace entre les boutons */
+}
+
 /*-------------------------------------------------------------------------------*/
 
   

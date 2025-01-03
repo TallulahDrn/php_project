@@ -19,7 +19,14 @@
         $heure_fin = $_POST['heure_fin'];
         $duree = $_POST['duree_rdv'];
         $etablissement = $_POST['etablissement'];
+        $custom_etablissement = isset($_POST['custom_etablissement']) ? trim($_POST['custom_etablissement']) : '';
 
+        // Si "Autre" est sélectionné, utiliser le champ personnalisé
+        if ($etablissement === 'autre' && !empty($custom_etablissement)) {
+            $etablissement = $custom_etablissement;
+        }
+
+        
         // Convertir les heures en timestamps
         $heure_debut = strtotime($heure_debut);
         $heure_fin = strtotime($heure_fin);

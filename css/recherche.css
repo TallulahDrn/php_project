@@ -54,3 +54,54 @@ li {
 }
   /*-------------------------------------------------------------------------------*/
   
+
+.light_green{
+    background-color: #C9FFAF;
+}
+.titre1 {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1.8em; 
+    font-family: 'Roboto', sans-serif;
+    color: #2e8b57; /* Vert foncé pour le titre */
+}
+.container{
+    padding: 3%;
+    border-radius: 15px; /* Coins arrondis pour la bulle */
+    background-color: #d4edda; /* Bulle verte */
+}
+.dark_green{
+    background-color: #0DFF00 !important;
+}
+.dark_green:hover{
+    background-color: #0cc402 !important;
+}
+.dark_green1{
+    background-color: #09af00 !important;
+}
+.dark_green1:hover{
+    background-color: #068100 !important;
+}
+.formulaire{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+/*----------------pour la page reserver_creneaux.php------------------*/
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+/* 3 cartes par ligne, sauf dimanche */
+.card {
+  width: 30%; /* 3 cartes par ligne */
+}
+/* Ajuste la taille des cartes pour que dimanche soit égal aux autres */
+.card-container .card:nth-child(7) {
+  width: 30%; /* Forcer la largeur de dimanche */
+}
+.card-container .card:nth-child(8) {
+  width: 30%; /* Pour le dernier jour (dimanche) */
+}

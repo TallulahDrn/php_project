@@ -74,7 +74,10 @@
                     <li class="nav-item"><a class="nav-link" href="mon_espace_patient.php">Mon espace</a></li>
                     <li class="nav-item"><a class="nav-link active" href="prendre_rdv_patient.php">Prendre rendez-vous</a></li>
                 </ul>
-                <ul class="navbar-nav d-flex flex-row align-items-center ms-auto">
+
+                <!-- Bouton "Aide" et image alignés à droite -->
+                <ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
+    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="espace_utilisateur.php" id="navbarDropdown" role="button" aria-expanded="false">
                             <img src="../images/malade.png" style="height:50px;width:50px">
@@ -83,8 +86,12 @@
                             <li><a class="dropdown-item" href="deconnexion.php">Se déconnecter</a></li>
                             <li><a class="dropdown-item" href="../html/aide_patient.html">Aide</a></li>
                             <li><a class="dropdown-item" href="mon_compte_patient.php">Mon compte</a></li>
+    
                         </ul>
+                        
                     </li>
+    
+    
                 </ul>
             </div>
         </nav>

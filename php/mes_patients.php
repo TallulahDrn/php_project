@@ -6,11 +6,6 @@
     // Démarrer la session pour accéder aux variables de session
     session_start();
 
-    // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: connexion.php"); // Rediriger vers la page de connexion si non connecté
-        exit();
-    }
 
     // Connexion à la base de données
     $conn = pg_connect("host=localhost dbname=projet_doct user=postgres password=Isen44");
