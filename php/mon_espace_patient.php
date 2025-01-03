@@ -178,7 +178,7 @@
                     <div class="rdv3">
                         <h2> Vous souhaitez prendre rendez-vous : </h2>
                         <!--<a href="../html/prendre_rdv_patient.html" class="btn-prendre-rdv">Prendre RDV</a>-->
-                        <a href="../html/prendre_rdv_patient.html" class="btn-prendre-rdv">Prendre RDV</a>
+                        <a href="prendre_rdv_patient.php" class="btn-prendre-rdv">Prendre RDV</a>
                     </div>
                 </div>
             </div>

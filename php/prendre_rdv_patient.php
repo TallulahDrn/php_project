@@ -1,19 +1,20 @@
 <?php
-
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['query'])) {
+    //si le formulaire est envoyé en POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['recherche'])) {
         $dsn = 'pgsql:dbname=projet_doct;host=localhost;port=5432';
         $user = 'postgres';
         $password = 'Isen44';
 
+        //connexion à la bdd
         try {
             $pdo = new PDO($dsn, $user, $password);
-            $query = trim($_POST['query']);
+            $recherche = trim($_POST['recherche']);//récupère ce que l'utilisateur tape pour la recherche
+            //trim enlève les espaces en trop
 
-            // Échapper les caractères spéciaux pour éviter des erreurs de syntaxe
-            $query = "%" . $query . "%";  // Ajouter les jokers % pour la recherche LIKE/ILIKE
+            //On recherche pour n'importe quelle ligne s'il y a $recherche dedans par exemple un 'a' (peu importe sa place)
+            $recherche = "%".$recherche."%";
 
-            // Requête SQL pour récupérer les médecins et leurs établissements sans horaires de RDV
+            // Requête SQL pour récupérer les médecins et les établissements dans lesquels ils consultent
             $sql = "
             SELECT 
                 Medecin.id AS medecin_id,
@@ -21,8 +22,8 @@
                 Personne.prenom,
                 Specialite.nom_specialite AS specialite,
                 Etablissement.adresse AS etablissement,
-                Etablissement.id AS etablissement_id,  -- ID de l'établissement ajouté
-                Specialite.id AS specialite_id        -- ID de la spécialité ajouté
+                Etablissement.id AS etablissement_id,  -- ID de l'établissement
+                Specialite.id AS specialite_id        -- ID de la spécialité
             FROM 
                 Medecin
             JOIN Personne ON Medecin.id_personne = Personne.id
@@ -31,9 +32,9 @@
             JOIN Rdv ON Medecin.id = Rdv.id_medecin
             JOIN Etablissement ON Rdv.id_etablissement = Etablissement.id
             WHERE 
-                (Personne.nom ILIKE :query 
-                OR Specialite.nom_specialite ILIKE :query 
-                OR Etablissement.adresse ILIKE :query)
+                (Personne.nom ILIKE :recherche 
+                OR Specialite.nom_specialite ILIKE :recherche 
+                OR Etablissement.adresse ILIKE :recherche) --si il y a un endroit qui correspond à la recherche
             GROUP BY 
                 Medecin.id, Personne.nom, Personne.prenom, Specialite.nom_specialite, Etablissement.adresse, Etablissement.id, Specialite.id
             ORDER BY 
@@ -41,13 +42,14 @@
             ";
 
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':query', $query, PDO::PARAM_STR); // Liens sécurisés avec les paramètres
+            $stmt->bindParam(':recherche', $recherche, PDO::PARAM_STR);//remplace le paramètre dans la recherche sql par $recherche
             $stmt->execute();
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Afficher les résultats si la requête a retourné des résultats
-            $show_results = !empty($results); // Vérifie s'il y a des résultats à afficher
-        } catch (PDOException $e) {
+            $show_results = !empty($results); //Vérifie s'il y a des résultats à afficher
+        } 
+        catch (PDOException $e) {//si on n'a pas réussi à se connecter à la bdd
             echo '<p>Erreur de connexion : ' . htmlspecialchars($e->getMessage()) . '</p>';
         }
     }
@@ -57,7 +59,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link href="../css/inscription.css" rel="stylesheet">
+        <link href="../css/rdv_patient.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <title>Prendre un rendez-vous</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,8 +94,8 @@
             <!-- Formulaire de recherche -->
             <form method="POST" action="">
                 <div class="mb-3">
-                    <label for="search-input" class="form-label">Rechercher un médecin, une spécialité ou un établissement :</label>
-                    <input type="text" id="search-input" name="query" class="form-control" placeholder="Tapez ici..." required>
+                    <label for="recherche" class="form-label">Rechercher un médecin, une spécialité ou un établissement :</label>
+                    <input type="text" id="recherche" name="recherche" class="form-control" placeholder="Tapez ici..." required>
                 </div>
                 <button type="submit" class="btn btn-primary">Rechercher</button>
             </form>
