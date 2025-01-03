@@ -1,4 +1,6 @@
 <?php 
+
+    
     session_start(); // Démarrer une session
 
     // Vérifier si les informations du formulaire ont été envoyées
