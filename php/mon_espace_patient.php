@@ -90,7 +90,7 @@
                         <a class="nav-link active" href="mon_espace_patient.php">Mon espace</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../html/prendre_rdv_patient.html">Prendre rendez-vous</a>
+                        <a class="nav-link" href="prendre_rdv_patient.php">Prendre rendez-vous</a>
                     </li>
                 </ul>
 
