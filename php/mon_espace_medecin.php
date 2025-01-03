@@ -8,7 +8,7 @@
 
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['user_id'])) {
-        header("Location: connexion.php"); // Rediriger vers la page de connexion si non connecté
+        header("Location: connexion_medecin.php"); // Rediriger vers la page de connexion si non connecté
         exit();
     }
 
