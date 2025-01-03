@@ -88,54 +88,59 @@
             </div>
         </nav>
 
-        <div class="container mt-5">
-            <h1>Prendre un rendez-vous</h1>
+        <div class="titre1">
+                <h1>Prendre un rendez-vous</h1>
+        </div>  
+        <div class="container my-5 light_green">
+              
+        
+            <div class="formulaire">
+                <!-- Formulaire de recherche -->
+                <form method="POST" action="">
+                    <div class="mb-3">
+                        <label for="recherche" class="form-label">Rechercher un médecin, une spécialité ou un établissement :</label>
+                        <input type="text" id="recherche" name="recherche" class="form-control" placeholder="Tapez ici..." required>
+                    </div>
+                    <button type="submit" class="btn dark_green">Rechercher</button>
+                </form>
 
-            <!-- Formulaire de recherche -->
-            <form method="POST" action="">
-                <div class="mb-3">
-                    <label for="recherche" class="form-label">Rechercher un médecin, une spécialité ou un établissement :</label>
-                    <input type="text" id="recherche" name="recherche" class="form-control" placeholder="Tapez ici..." required>
-                </div>
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-            </form>
+                <!-- Tableau des résultats -->
+                <?php if (isset($show_results) && $show_results): ?>
+                    <div class="table-responsive mt-4">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nom du Médecin</th>
+                                    <th>Spécialité</th>
+                                    <th>Établissement</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($results as $row): ?>
+                                <tr>
+                                    <td>Dr. <?= htmlspecialchars($row['nom']) ?> <?= htmlspecialchars($row['prenom']) ?></td>
+                                    <td><?= htmlspecialchars($row['specialite']) ?></td>
+                                    <td><?= htmlspecialchars($row['etablissement']) ?></td>
+                                    <td>
+                                        <!-- Formulaire pour envoyer les paramètres via POST -->
+                                        <form method="POST" action="reserver_creneaux.php">
+                                            <input type="hidden" name="medecin_id" value="<?= htmlspecialchars($row['medecin_id']) ?>">
+                                            <input type="hidden" name="etablissement_id" value="<?= htmlspecialchars($row['etablissement_id']) ?>">
+                                            <input type="hidden" name="specialite_id" value="<?= htmlspecialchars($row['specialite_id']) ?>">
+                                            <button type="submit" class="btn dark_green">Voir les créneaux</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
 
-            <!-- Tableau des résultats -->
-            <?php if (isset($show_results) && $show_results): ?>
-                <div class="table-responsive mt-4">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nom du Médecin</th>
-                                <th>Spécialité</th>
-                                <th>Établissement</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($results as $row): ?>
-                            <tr>
-                                <td>Dr. <?= htmlspecialchars($row['nom']) ?> <?= htmlspecialchars($row['prenom']) ?></td>
-                                <td><?= htmlspecialchars($row['specialite']) ?></td>
-                                <td><?= htmlspecialchars($row['etablissement']) ?></td>
-                                <td>
-                                    <!-- Formulaire pour envoyer les paramètres via POST -->
-                                    <form method="POST" action="reserver_creneaux.php">
-                                        <input type="hidden" name="medecin_id" value="<?= htmlspecialchars($row['medecin_id']) ?>">
-                                        <input type="hidden" name="etablissement_id" value="<?= htmlspecialchars($row['etablissement_id']) ?>">
-                                        <input type="hidden" name="specialite_id" value="<?= htmlspecialchars($row['specialite_id']) ?>">
-                                        <button type="submit" class="btn btn-info">Voir les créneaux</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-
-                    </table>
-                </div>
-            <?php elseif (isset($show_results) && !$show_results): ?>
-                <p>Aucun résultat trouvé.</p>
-            <?php endif; ?>
+                        </table>
+                    </div>
+                <?php elseif (isset($show_results) && !$show_results): ?>
+                    <p>Aucun résultat trouvé.</p>
+                <?php endif; ?>
+            </div>
         </div>
     </body>
 </html>

@@ -1,0 +1,97 @@
+/*-----------------------------header------------------------------------*/
+li {
+    list-style-type: none;  
+}
+.navbar {
+    background-color: #98FB98 !important; /* Vert clair pour la navbar */
+}
+.navbar-nav {
+    gap: 15px; /* Espace entre les boutons */
+} 
+.navbar-brand {
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+}
+.nav-link {
+    color: black;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+} 
+.nav-link:hover {
+    background-color: #3a9b2d !important;
+    color: white !important;
+    box-sizing: border-box; /* S'assurer que la taille totale ne change pas */
+}
+.navbar img {
+    border-radius: 50%;
+}  
+.nav-link.active {
+    color: rgb(0, 0, 0) !important;
+    background-color: #22f534; /* Un vert plus intense */
+    border-radius: 5px;
+    text-decoration: none;
+    padding-top: 3px; /* Réduit la hauteur */
+    padding-bottom: 3px; /* Réduit la hauteur */
+    padding-left: 12px; /* Augmente la largeur */
+    padding-right: 12px; /* Augmente la largeur */
+} 
+.navbar .nav-item {
+    margin-right: 10px; /* Pour espacer un peu les items entre eux */
+}
+/*-------------------------------------------------------------------------------*/
+
+  
+
+.light_green{
+    background-color: #C9FFAF;
+}
+.titre1 {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1.8em; 
+    font-family: 'Roboto', sans-serif;
+    color: #2e8b57; /* Vert foncé pour le titre */
+}
+.container{
+    padding: 3%;
+    border-radius: 15px; /* Coins arrondis pour la bulle */
+    background-color: #d4edda; /* Bulle verte */
+}
+.dark_green{
+    background-color: #0DFF00 !important;
+}
+.dark_green:hover{
+    background-color: #0cc402 !important;
+}
+.dark_green1{
+    background-color: #09af00 !important;
+}
+.dark_green1:hover{
+    background-color: #068100 !important;
+}
+.formulaire{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+/*----------------pour la page reserver_creneaux.php------------------*/
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+/* 3 cartes par ligne, sauf dimanche */
+.card {
+    width: 30%; /* 3 cartes par ligne */
+}
+/* Ajuste la taille des cartes pour que dimanche soit égal aux autres */
+.card-container .card:nth-child(7) {
+    width: 30%; /* Forcer la largeur de dimanche */
+}
+.card-container .card:nth-child(8) {
+    width: 30%; /* Pour le dernier jour (dimanche) */
+}
