@@ -98,7 +98,7 @@
                 <ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="espace_utilisateur.php" id="navbarDropdown" role="button" aria-expanded="false">
                             <img src="../images/malade.png" style="height:50px;width:50px">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -178,7 +178,7 @@
                     <div class="rdv3">
                         <h2> Vous souhaitez prendre rendez-vous : </h2>
                         <!--<a href="../html/prendre_rdv_patient.html" class="btn-prendre-rdv">Prendre RDV</a>-->
-                        <a href="../html/prendre_rdv_patient.html" class="btn-prendre-rdv">Prendre RDV</a>
+                        <a href="prendre_rdv_patient.php" class="btn-prendre-rdv">Prendre RDV</a>
                     </div>
                 </div>
             </div>

@@ -90,7 +90,7 @@
 				<ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="espace_utilisateur.php" id="navbarDropdown" role="button" aria-expanded="false">
                             <img src="../images/malade.png" style="height:50px;width:50px">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

@@ -56,7 +56,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <link href="../css/inscription.css" rel="stylesheet">
+        <link href="../css/espace_utilisateur.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <title>Prendre un rendez-vous</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,13 +66,13 @@
             <div class="container-fluid d-flex justify-content-between">
                 <a class="navbar-brand">Tibobo</a>
                 <ul class="navbar-nav d-flex flex-row align-items-center"> <!-- Liens de navigation à gauche -->
-                    <li class="nav-item"><a class="nav-link active" href="espace_utilisateur.php">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link " href="espace_utilisateur.php">Accueil</a></li>
                     <li class="nav-item"><a class="nav-link" href="mon_espace_patient.php">Mon espace</a></li>
-                    <li class="nav-item"><a class="nav-link" href="prendre_rdv_patient.php">Prendre rendez-vous</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="prendre_rdv_patient.php">Prendre rendez-vous</a></li>
                 </ul>
                 <ul class="navbar-nav d-flex flex-row align-items-center ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="espace_utilisateur.php" id="navbarDropdown" role="button" aria-expanded="false">
                             <img src="../images/malade.png" style="height:50px;width:50px">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

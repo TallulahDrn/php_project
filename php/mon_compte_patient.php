@@ -55,7 +55,7 @@
 						<a class="nav-link" href="espace_utilisateur.php">Accueil</a>
 					</li>
                     <li class="nav-item">
-						<a class="nav-link" href="#">Mon espace</a>
+						<a class="nav-link" href="mon_espace_patient.php">Mon espace</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="prendre_rdv_patient.php">Prendre rendez-vous</a>
@@ -66,7 +66,7 @@
 				<ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="espace_utilisateur.php" id="navbarDropdown" role="button" aria-expanded="false">
                             <img src="../images/malade.png" style="height:50px;width:50px">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
