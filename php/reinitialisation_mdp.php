@@ -13,15 +13,22 @@ if (!$conn) {
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    // Vérification si l'email est bien passé en POST (car c'est la méthode utilisée pour soumettre le formulaire)
+    if (!isset($_POST['email'])) {
+        echo json_encode(['status' => 'error', 'message' => 'L\'email est manquant.']);
+        exit();
+    }
+    
     $email = $_POST['email']; // Récupérer l'email passé en POST
     $new_password = $_POST['new_password'];
     $confirm_password = $_POST['confirm_password'];
         
     
     // Vérifier si l'email existe dans la base de données
-    $email_check_sql = "SELECT * FROM personne WHERE email = '" . pg_escape_string($conn, $email) . "'";
-    error_log("SQL Query: $email_check_sql");
-    $email_check_result = pg_query($conn, $email_check_sql);
+    $email_check_sql = "SELECT * FROM personne WHERE email = $1";
+    $email_check_result = pg_query_params($conn, $email_check_sql, array($email));
+
 
     if (!$email_check_result) {
         echo json_encode(['status' => 'error', 'message' => 'Erreur dans la requête SQL: ' . pg_last_error($conn)]);

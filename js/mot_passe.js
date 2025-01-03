@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Redirection vers la page de réinitialisation
                     setTimeout(() => {
                         const email = document.getElementById('email').value; // Récupérer l'email du formulaire
-                        window.location.href = '/Projet_php_2/php_project/php/reinitialisation_mdp.php?email=${encodeURIComponent(email)}'; // Redirige vers la page PHP 
+                        //window.location.href = '/Projet_php_2/php_project/php/reinitialisation_mdp.php?email=${encodeURIComponent(email)}'; // Redirige vers la page PHP 
+                        window.location.href = '/Projet_php_2/php_project/php/reinitialisation_mdp.php?email=' + encodeURIComponent(email); // Redirige vers la page PHP
+
                     }, 2000);
                 } else {
                     modalMessage.innerHTML = `<p class="text-danger">${result.message}</p>`;
