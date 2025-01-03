@@ -1,5 +1,6 @@
 <?php
-    // Si la méthode de la requête est POST et qu'il y a une requête
+
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['query'])) {
         $dsn = 'pgsql:dbname=projet_doct;host=localhost;port=5432';
         $user = 'postgres';
@@ -110,18 +111,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($results as $row): ?>
-                                <tr>
-                                    <td>DR. <?= htmlspecialchars($row['nom']) ?> <?= htmlspecialchars($row['prenom']) ?></td>
-                                    <td><?= htmlspecialchars($row['specialite']) ?></td>
-                                    <td><?= htmlspecialchars($row['etablissement']) ?></td>
-                                    <td>
-                                        <!-- Bouton pour accéder aux créneaux avec les paramètres supplémentaires -->
-                                        <a href="reserver_creneaux.php?medecin_id=<?= htmlspecialchars($row['medecin_id']) ?>&etablissement_id=<?= htmlspecialchars($row['etablissement_id']) ?>&specialite_id=<?= htmlspecialchars($row['specialite_id']) ?>" class="btn btn-info">Voir les créneaux</a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
+                        <?php foreach ($results as $row): ?>
+                            <tr>
+                                <td>Dr. <?= htmlspecialchars($row['nom']) ?> <?= htmlspecialchars($row['prenom']) ?></td>
+                                <td><?= htmlspecialchars($row['specialite']) ?></td>
+                                <td><?= htmlspecialchars($row['etablissement']) ?></td>
+                                <td>
+                                    <!-- Formulaire pour envoyer les paramètres via POST -->
+                                    <form method="POST" action="reserver_creneaux.php">
+                                        <input type="hidden" name="medecin_id" value="<?= htmlspecialchars($row['medecin_id']) ?>">
+                                        <input type="hidden" name="etablissement_id" value="<?= htmlspecialchars($row['etablissement_id']) ?>">
+                                        <input type="hidden" name="specialite_id" value="<?= htmlspecialchars($row['specialite_id']) ?>">
+                                        <button type="submit" class="btn btn-info">Voir les créneaux</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+
                     </table>
                 </div>
             <?php elseif (isset($show_results) && !$show_results): ?>
