@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     modalMessage.innerHTML = `<p class="text-success">${result.message}</p>`;
                     // Redirection vers la page de réinitialisation
                     setTimeout(() => {
-                        window.location.href = '/Projet_php_2/php_project/html/connexion_medecin.html'; // Redirige vers la page PHP 
+                        window.location.href = '/Projet_php_2/php_project/php/connexion_medecin.php'; // Redirige vers la page PHP 
                     }, 2000);
                 } else {
                     modalMessage.innerHTML = `<p class="text-danger">${result.message}</p>`;

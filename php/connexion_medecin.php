@@ -157,7 +157,7 @@
                         </div>
                         
                         <div class="mdp_oublie">
-                            <a href="mot_passe.html">Mot de passe oublié ?</a>
+                            <a href="../html/mot_passe.html">Mot de passe oublié ?</a>
                         </div>
                     </div>
                 

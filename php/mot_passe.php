@@ -25,11 +25,20 @@
         if ($result) {
             $user = pg_fetch_assoc($result);
             if ($user) {
-                echo json_encode(['status' => 'success', 'message' => 'Les informations sont correctes, vous allez être redirigé vers la page de réinitialisation dans quelques instants.']);
-            } else {
+                // Vérifiez si l'utilisateur est un médecin
+                if ($user['medecin'] === 't') {
+                    echo json_encode(['status' => 'success', 'message' => 'Les informations sont correctes, vous allez être redirigé vers la page de réinitialisation dans quelques instants.']);
+                }
+                else{
+                    // L'utilisateur est un patient
+                    echo json_encode(['status' => 'error', 'message' => 'Vous ne pouvez pas changer votre mot de passe.']);
+                }
+            } 
+            else {
                 echo json_encode(['status' => 'error', 'message' => "Aucun utilisateur trouvé avec ces informations."]);
             }
-        } else {
+        } 
+        else {
             echo json_encode(['status' => 'error', 'message' => 'Erreur de requête : ' . pg_last_error($conn)]);
         }
 
