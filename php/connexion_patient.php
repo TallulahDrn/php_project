@@ -44,22 +44,25 @@
                     else {
                         // Si le mot de passe est incorrect
                         //echo "Mot de passe incorrect.";
-                        //echo "<script>window.onload = function() { alert('Mot de passe incorrect.'); };</script>";
                         $messageErreur = "Mot de passe incorrect.";
 
                     }
                 }
                 else{
                     //echo "Vous devez vous connecter via la page Médecin.";
-                    /*echo "<script>window.onload = function() { 
-                        alert('Vous devez vous connecter via la page Médecin. Redirection...');
-                        window.location.href = '../html/connexion_medecin.html'; 
-                    };</script>";*/
-                    
+                                        
                     // Si l'utilisateur est un médecin
-                    $messageErreur = "Vous devez vous connecter via la page Médecin.";
-                    echo "<script>window.location.href = '../html/connexion_medecin.html';</script>";
-                    exit();
+                    $messageErreur = "Vous devez vous connecter via la page Médecin, vous allez être redirigé dans quelques instants.";
+                    //echo "<script>window.location.href = 'connexion_medecin.php';</script>";
+                    /*echo "<script>
+                        setTimeout(function() {
+                            window.location.href = 'connexion_medecin.php';
+                        }, 1000); // 1 secondes
+                        alert('Vous allez être redirigé vers la page de connexion Médecin.');
+                    </script>";
+                    */
+                    $redirectionNecessaire = true;
+                    //exit();
                     
                 }
             } 
@@ -78,12 +81,94 @@
 
         // Fermer la connexion à la base de données
         pg_close($conn);
-
-        // Rediriger vers la page de connexion avec le message d'erreur en paramètre d'URL
-        if ($messageErreur) {
-            header("Location: ../html/connexion_patient.html?error=" . urlencode($messageErreur)); // Redirection avec erreur
-            exit();
-        }
     }
 ?>
 
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <link href="../css/inscription.css" rel="stylesheet">
+        <!--<script src="script.js"></script> -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>Connexion Patient</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <nav class="navbar">
+			<div class="container-fluid d-flex justify-content-between">
+				<a class="navbar-brand">Tibobo</a>
+
+				<ul class="navbar-nav d-flex flex-row align-items-center"> <!-- Liens de navigation à gauche -->
+					<li class="nav-item">
+						<a class="nav-link active" href="../html/accueil.html">Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="recherche.php">Recherche</a>
+					</li>
+				</ul>
+
+				<!-- Bouton "Aide" et image alignés à droite -->
+				<ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
+					<li class="nav-item">
+						<a class="nav-link" href="../html/aide.html">Aide</a>
+					</li>
+					<li class="nav-item">
+                        <a href="../html/accueil.html"> <img src="../images/anonyme.png" style="height:50px;width:50px"></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+        <br>
+        <br>
+        <div class="light_green container">
+            <h1 class="text-center ">Connectez-vous</h1>
+            <img id="icone" src="../images/malade.png" class="d-block mx-auto">
+            <br>
+
+            <?php if (!empty($messageErreur)): ?>
+            <div class="alert alert-danger" role="alert">
+                <?= htmlspecialchars($messageErreur) ?>
+            </div>
+           
+            <?php if (!empty($redirectionNecessaire)): ?>
+            <script>
+                // Redirige après un délai de 3 secondes
+                setTimeout(function() {
+                    window.location.href = 'connexion_medecin.php';
+                }, 3000); // 3000 millisecondes = 3 secondes
+            </script>
+            <?php endif; ?>
+
+            <?php endif; ?>
+
+            <form class="formulaire d-flex flex-column align-items-center" action="../php/connexion_patient.php" method="post">
+                    
+                <div class="mb-3 w-100">
+                    <label for="mail1" class="form-label">Saisissez votre adresse mail : *</label>
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="mail" name="mail" placeholder="nom@mail.com" required>
+                        <label for="mail1">nom@mail.com</label>
+                    </div>
+                </div>
+                
+                <div class="mb-3 w-100">
+                    <label for="motdepasse" class="form-label">Saisissez votre mot de passe : *</label>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="motdepasse" name="motdepasse" placeholder="**********"  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$"  required>
+                        <label for="motdepasse">**********</label>
+                    </div>
+                </div>
+            
+            
+            <div class="d-flex justify-content-center">
+                <input class="btn dark_green" type="submit" value="Se connecter">
+            </div>
+        </form>
+        </div>
+        <br>
+        <br>
+        <br>
+    </body>
+</html>
