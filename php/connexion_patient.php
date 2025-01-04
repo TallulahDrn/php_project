@@ -1,6 +1,10 @@
 <?php 
     session_start(); // Démarrer une session
 
+
+    // Initialiser un message d'erreur vide
+    $messageErreur = '';
+
     // Vérifier si les informations du formulaire ont été envoyées
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -39,16 +43,32 @@
                     } 
                     else {
                         // Si le mot de passe est incorrect
-                        echo "Mot de passe incorrect.";
+                        //echo "Mot de passe incorrect.";
+                        //echo "<script>window.onload = function() { alert('Mot de passe incorrect.'); };</script>";
+                        $messageErreur = "Mot de passe incorrect.";
+
                     }
                 }
                 else{
-                    echo "Vous devez vous connecter via la page Médecin.";
+                    //echo "Vous devez vous connecter via la page Médecin.";
+                    /*echo "<script>window.onload = function() { 
+                        alert('Vous devez vous connecter via la page Médecin. Redirection...');
+                        window.location.href = '../html/connexion_medecin.html'; 
+                    };</script>";*/
+                    
+                    // Si l'utilisateur est un médecin
+                    $messageErreur = "Vous devez vous connecter via la page Médecin.";
+                    echo "<script>window.location.href = '../html/connexion_medecin.html';</script>";
+                    exit();
+                    
                 }
             } 
             else {
                 // Si l'email n'existe pas dans la base de données
-                echo "Aucun utilisateur trouvé avec cet email.";
+                //echo "Aucun utilisateur trouvé avec cet email.";
+                //echo "<script>window.onload = function() { alert('Aucun utilisateur trouvé avec cet email.'); };</script>";
+                $messageErreur = "Aucun utilisateur trouvé avec cet email.";
+
             }
         } 
         else {
@@ -58,5 +78,12 @@
 
         // Fermer la connexion à la base de données
         pg_close($conn);
+
+        // Rediriger vers la page de connexion avec le message d'erreur en paramètre d'URL
+        if ($messageErreur) {
+            header("Location: ../html/connexion_patient.html?error=" . urlencode($messageErreur)); // Redirection avec erreur
+            exit();
+        }
     }
 ?>
+
