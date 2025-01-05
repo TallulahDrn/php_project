@@ -32,8 +32,10 @@
         SELECT DISTINCT personne.id, personne.prenom, personne.nom, personne.telephone, personne.email
         FROM rdv
         INNER JOIN personne ON rdv.id_personne = personne.id
-        WHERE rdv.id_medecin = $1
+        INNER JOIN medecin ON rdv.id_medecin = medecin.id
+        WHERE medecin.id_personne = $1
     ";
+
 
     // Ajouter des conditions en fonction du terme de recherche
     if (!empty($search_term)) {
