@@ -150,7 +150,7 @@ try {
                                 <td><?= htmlspecialchars($row['etablissement']) ?></td>
                                 <td>
                                     <?php if (!$estConnecte): ?>
-                                        <p class="text-danger">Veuillez vous <a href="../html/connexion_patient.html">connecter</a> ou <a href="../html/inscription_patient.html">inscrire</a> pour réserver un rendez-vous.</p>
+                                        <p class="text-danger">Veuillez vous <a href="connexion_patient.php">connecter</a> ou <a href="../html/inscription_patient.html">inscrire</a> pour réserver un rendez-vous.</p>
                                     <?php else: ?>
                                         <form method="POST" action="reserver_creneaux.php">
                                             <input type="hidden" name="medecin_id" value="<?= htmlspecialchars($row['medecin_id']) ?>">
