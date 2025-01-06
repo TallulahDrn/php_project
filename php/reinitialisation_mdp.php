@@ -73,6 +73,34 @@
         <title>Réinitialisation du Mot de Passe</title>
     </head>
     <body>
+
+
+        <nav class="navbar">
+			<div class="container-fluid d-flex justify-content-between">
+				<a class="navbar-brand">Tibobo</a>
+
+				<ul class="navbar-nav d-flex flex-row align-items-center"> <!-- Liens de navigation à gauche -->
+					<li class="nav-item">
+						<a class="nav-link" href="../html/accueil.html">Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="recherche.php">Recherche</a>
+					</li>
+				</ul>
+
+				<!-- Bouton "Aide" et image alignés à droite -->
+				<ul class="navbar-nav d-flex flex-row align-items-center ms-auto"> 
+					<li class="nav-item">
+						<a class="nav-link" href="../html/aide.html">Aide</a>
+					</li>
+					<li class="nav-item">
+                        <a href="../html/accueil.html"> <img src="../images/medecin.png" style="height:50px;width:50px"></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+
         <div class="container mt-5">
             <h1 class="text-center">Réinitialisation du Mot de Passe</h1>
 
@@ -88,11 +116,11 @@
 
                 <div class="mb-3">
                     <label for="new_password" class="form-label">Nouveau Mot de Passe :</label>
-                    <input type="password" id="new_password" name="new_password" class="form-control" required>
+                    <input type="password" id="new_password" name="new_password" class="form-control" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$" required>
                 </div>
                 <div class="mb-3">
                     <label for="confirm_password" class="form-label">Confirmer le Mot de Passe :</label>
-                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Réinitialiser le Mot de Passe</button>
             </form>
