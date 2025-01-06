@@ -26,10 +26,12 @@
         FROM rdv
         INNER JOIN personne ON rdv.id_personne = personne.id
         INNER JOIN etablissement ON rdv.id_etablissement = etablissement.id
-        WHERE rdv.id_medecin = $1
+        INNER JOIN medecin ON rdv.id_medecin = medecin.id
+        WHERE medecin.id_personne = $1
         AND rdv.date = $2
         ORDER BY rdv.heure
     ";
+
 
     $result_rdv = pg_query_params($conn, $query_rdv, [$user_id, $current_date]);
 
@@ -43,6 +45,7 @@
         $rdvs[] = $rdv;
     }
 
+    
     // Formulaire pour ajouter une nouvelle disponibilité
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Récupérer les données du formulaire
@@ -151,10 +154,12 @@
                                 FROM rdv
                                 INNER JOIN personne ON rdv.id_personne = personne.id
                                 INNER JOIN etablissement ON rdv.id_etablissement = etablissement.id
-                                WHERE rdv.id_medecin = $1
+                                INNER JOIN medecin ON rdv.id_medecin = medecin.id
+                                WHERE medecin.id_personne = $1
                                 AND rdv.date > $2
                                 ORDER BY rdv.date, rdv.heure
                             ";
+
                             $current_date = date('Y-m-d');
                             $result_future_rdv = pg_query_params($conn, $query_future_rdv, [$user_id, $current_date]);
 

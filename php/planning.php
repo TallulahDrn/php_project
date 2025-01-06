@@ -28,7 +28,8 @@
         FROM rdv
         INNER JOIN personne ON rdv.id_personne = personne.id
         INNER JOIN etablissement ON rdv.id_etablissement = etablissement.id
-        WHERE rdv.id_medecin = $1
+        INNER JOIN medecin ON rdv.id_medecin = medecin.id
+        WHERE medecin.id_personne = $1
         AND rdv.date BETWEEN $2 AND $3
         ORDER BY rdv.date, rdv.heure
     ";
