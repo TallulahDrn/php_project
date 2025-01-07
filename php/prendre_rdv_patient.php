@@ -89,6 +89,7 @@
         WHERE 
             medecin.id = $1 
             AND etablissement.adresse = $2
+            AND rdv.date >= CURRENT_DATE
         GROUP BY 
             medecin.id, personne.nom, personne.prenom, specialite.nom_specialite, etablissement.adresse, etablissement.id, specialite.id
         ORDER BY 
