@@ -1,5 +1,5 @@
 # php_project
-###Voici notre site web qui permet à des patients de prendre rendez-vous avec des médecins. Les médecins peuvent également gérer leurs rendez-vous sur cette plateforme.
+### Voici notre site web qui permet à des patients de prendre rendez-vous avec des médecins. Les médecins peuvent également gérer leurs rendez-vous sur cette plateforme.
 ## Installation :
 Il faut que vous installiez sur votre wsl (linux) postgresql, apache2 et le module php.
 Mettez à jour les paquets sur votre ordinateur.
@@ -8,8 +8,10 @@ Mettez à jour les paquets sur votre ordinateur.
 
 **APACHE2**
 `sudo apt install apache2`
+
 **Module PHP**
 `sudo apt install php libapache2-mod-php`
+&nbsp;
 **Postgresql**
 Téléchargement :
 `sudo apt install postgresql`
