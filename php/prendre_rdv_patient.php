@@ -1,4 +1,15 @@
 <?php
+
+    // Démarrer la session pour accéder aux variables de session
+    session_start();
+
+
+    // Connexion à la base de données
+    $conn = pg_connect("host=localhost dbname=projet_doct user=postgres password=Isen44");
+    if (!$conn) {
+        die("Erreur de connexion à la base de données : " . pg_last_error());
+    }
+
     //si le formulaire est envoyé en POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['recherche'])) {
         $dsn = 'pgsql:dbname=projet_doct;host=localhost;port=5432';
@@ -53,7 +64,58 @@
             echo '<p>Erreur de connexion : ' . htmlspecialchars($e->getMessage()) . '</p>';
         }
     }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['medecin_id'], $_GET['etablissement'])) {
+        $medecin_id = intval($_GET['medecin_id']);
+        $etablissement = $_GET['etablissement'];
+    
+        // Requête pour récupérer les créneaux disponibles pour ce médecin
+        $query_dispo = "
+    SELECT 
+        medecin.id AS medecin_id,
+        personne.nom,
+        personne.prenom,
+        specialite.nom_specialite AS specialite_medecin,
+        etablissement.adresse AS adresse_etablissement,
+        etablissement.id AS etablissement_id,  -- ID de l'établissement
+        specialite.id AS specialite_id        -- ID de la spécialité
+        FROM 
+            medecin
+        JOIN personne ON medecin.id_personne = personne.id
+        JOIN possede ON medecin.id = possede.id_medecin
+        JOIN specialite ON possede.id_specialite = specialite.id
+        JOIN rdv ON medecin.id = rdv.id_medecin
+        JOIN etablissement ON rdv.id_etablissement = etablissement.id
+        WHERE 
+            medecin.id = $1 
+            AND etablissement.adresse = $2
+        GROUP BY 
+            medecin.id, personne.nom, personne.prenom, specialite.nom_specialite, etablissement.adresse, etablissement.id, specialite.id
+        ORDER BY 
+        personne.nom, personne.prenom, etablissement.adresse;
+        ";
+
+        $result_dispo = pg_query_params($conn, $query_dispo, [$medecin_id, $etablissement]);
+    
+        if (!$result_dispo) {
+            die("Erreur lors de l'exécution de la requête : " . pg_last_error($conn));
+        }
+    
+        $creneaux_disponibles = pg_fetch_all($result_dispo) ?: [];
+    } 
+    else {
+        $creneaux_disponibles = [];
+    }
+    
+
+    // Fermer la connexion à la base de données
+    pg_close($conn);
 ?>
+
+
+
+    
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -149,6 +211,43 @@
                     <p>Aucun résultat trouvé.</p>
                 <?php endif; ?>
             </div>
+            
+            <?php if (count($creneaux_disponibles) > 0): ?>
+                <div class="table-responsive mt-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nom du Médecin</th>
+                                <th>Spécialité</th>
+                                <th>Établissement</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($creneaux_disponibles as $creneau): ?>
+                            <tr>
+                                <td>Dr. <?= htmlspecialchars($creneau['prenom']) ?> <?= htmlspecialchars($creneau['nom']) ?></td>
+                                <td><?= htmlspecialchars($creneau['specialite_medecin']) ?></td>
+                                <td><?= htmlspecialchars($creneau['adresse_etablissement']) ?></td>
+                                <td>
+                                    <!-- Formulaire pour envoyer les paramètres via POST -->
+                                    <form method="POST" action="reserver_creneaux.php">
+                                        <input type="hidden" name="medecin_id" value="<?= htmlspecialchars($creneau['medecin_id']) ?>">
+                                        <input type="hidden" name="etablissement_id" value="<?= htmlspecialchars($creneau['etablissement_id']) ?>">
+                                        <input type="hidden" name="specialite_id" value="<?= htmlspecialchars($creneau['specialite_id']) ?>">
+                                        <input type="hidden" name="rdv_id" value="<?= htmlspecialchars($creneau['rdv_id']) ?>"> <!-- Ajouter l'ID du créneau -->
+                                        <button type="submit" class="btn dark_green">Voir les créneaux</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+
+                    </table>
+                </div>
+            <?php else: ?>
+                <p>Aucun créneau disponible pour ce médecin pour l'instant.</p>
+            <?php endif; ?>
         </div>
     </body>
 </html>

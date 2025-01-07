@@ -110,6 +110,8 @@
         echo '<p>Paramètres manquants.</p>';
         exit;
     }
+
+    
 ?>
 
 <!DOCTYPE html>

@@ -26,9 +26,11 @@
 
     // Requête pour récupérer les rendez-vous de l'utilisateur
     $query_rdv = "
-        SELECT rdv.date, rdv.heure, rdv.duree, etablissement.adresse
+        SELECT rdv.date, rdv.heure, rdv.duree, etablissement.adresse, personne.nom AS nom_medecin, personne.prenom AS prenom_medecin, medecin.id AS medecin_id
         FROM rdv
         INNER JOIN etablissement ON rdv.id_etablissement = etablissement.id
+        INNER JOIN medecin ON rdv.id_medecin = medecin.id
+        INNER JOIN personne ON medecin.id_personne = personne.id
         WHERE rdv.id_personne = $1
         ORDER BY rdv.date, rdv.heure
     ";
@@ -127,6 +129,8 @@
                                         <th>Heure</th>
                                         <th>Durée</th>
                                         <th>Établissement</th>
+                                        <th>Médecin</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -136,6 +140,9 @@
                                             <td><?php echo $rdv['heure']; ?></td>
                                             <td><?php echo $rdv['duree']; ?></td>
                                             <td><?php echo $rdv['adresse']; ?></td>
+                                            <td> Dr. <?php echo $rdv['prenom_medecin']; ?> <?php echo $rdv['nom_medecin']; ?></td>
+
+                                            
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -154,6 +161,9 @@
                                         <th>Heure</th>
                                         <th>Durée</th>
                                         <th>Établissement</th>
+                                        <th>Médecin</th>
+                                        <th>Action</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -163,6 +173,16 @@
                                             <td><?php echo $rdv['heure']; ?></td>
                                             <td><?php echo $rdv['duree']; ?></td>
                                             <td><?php echo $rdv['adresse']; ?></td>
+                                            <td> Dr. <?php echo $rdv['prenom_medecin']; ?> <?php echo $rdv['nom_medecin']; ?></td>
+                                            <td>
+                                                <form method="GET" action="prendre_rdv_patient.php">
+                                                    <input type="hidden" name="medecin_id" value="<?= htmlspecialchars($rdv['medecin_id']) ?>">
+                                                    <input type="hidden" name="etablissement" value="<?= htmlspecialchars($rdv['adresse']) ?>">
+                                                    <button type="submit" class="btn btn-primary">Reprendre RDV</button>
+                                                </form>
+                                            </td>
+
+
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
