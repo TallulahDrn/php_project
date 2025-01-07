@@ -6,24 +6,24 @@ Mettez à jour les paquets sur votre ordinateur.
 `sudo apt update`
 `sudo apt upgrade`
 
-**APACHE2**
+**APACHE2**&nbsp;
 `sudo apt install apache2`
-
-**Module PHP**
+&nbsp;
+**Module PHP**&nbsp;
 `sudo apt install php libapache2-mod-php`
 &nbsp;
-**Postgresql**
-Téléchargement :
+**Postgresql**&nbsp;
+Téléchargement :&nbsp;
 `sudo apt install postgresql`
 `sudo service postgresql start`
-
-Modification du mot de passe :
+&nbsp;
+Modification du mot de passe :&nbsp;
 `sudo passwd postgres`
 `su - postgres`
 `psql -c "alter user postgres with password 'StrongAdminP@ssw0rd'"`
 `exit`
-
-Redémarrer :
+&nbsp;
+Redémarrer :&nbsp;
 `sudo service postgresql restart`
 
 ## Utilisation :
