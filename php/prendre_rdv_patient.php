@@ -246,8 +246,7 @@
 
                     </table>
                 </div>
-            <?php else: ?>
-                <p>Aucun créneau disponible pour ce médecin pour l'instant.</p>
+            
             <?php endif; ?>
         </div>
     </body>
