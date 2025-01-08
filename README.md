@@ -50,5 +50,6 @@ Vous voilà sur notre site web !
 Vous pouvez vous inscrire, en tant que patient ou médecin puis vous connecter pour accéder à toutes les fonctionnalités.
 
 
+Voici le lien de notre répertoire GitHub : https://github.com/TallulahDrn/php_project.git
 
 
