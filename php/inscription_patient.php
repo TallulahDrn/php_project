@@ -55,7 +55,7 @@ try { //connexion à la base de données
 
         //Exécution de la requête d'insertion
         $stmt->execute();
-        header("Location: ../html/connexion_patient.html");
+        header("Location: connexion_patient.php");
     }
     else {
         echo "Veuillez soumettre le formulaire.";

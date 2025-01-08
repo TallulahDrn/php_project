@@ -126,6 +126,6 @@
 
 
     pg_close($conn); // Fermer la connexion
-    header("Location: ../html/connexion_medecin.html");
+    header("Location: connexion_medecin.php");
     exit();
 ?>
