@@ -165,3 +165,12 @@ h2 {
 .btn-prendre-rdv:hover {
     background-color: #2d7f1a; /* Couleur plus foncée pour le survol */
 }
+
+
+
+.rdv2 .btn-primary{
+    background-color: #22f534 !important; /* Couleur verte du bouton */
+    color: black;
+    border: none;
+    border-radius: 5px;
+}
